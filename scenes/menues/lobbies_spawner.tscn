@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://cgbevd6rnt4kb"]
+
+[node name="Lobbies" type="MultiplayerSpawner"]
+_spawnable_scenes = PackedStringArray("res://scenes/menues/lobby.tscn")
+spawn_path = NodePath(".")
+spawn_limit = 10

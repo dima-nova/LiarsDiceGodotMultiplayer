@@ -1,0 +1,32 @@
+[gd_resource type="Theme" load_steps=4 format=3 uid="uid://del6bdh06shb7"]
+
+[ext_resource type="FontFile" uid="uid://crl5ijiieuwbe" path="res://assets/UI/fonts/Nunito-SemiBold.ttf" id="1_jck8w"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e01be"]
+bg_color = Color(0, 0.352941, 0.356863, 1)
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xnm3i"]
+bg_color = Color(0.00392157, 0.501961, 0.407843, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[resource]
+Button/colors/font_color = Color(1, 1, 1, 1)
+Button/colors/font_disabled_color = Color(1, 1, 1, 1)
+Button/colors/font_focus_color = Color(1, 1, 1, 1)
+Button/font_sizes/font_size = 24
+Button/fonts/font = ExtResource("1_jck8w")
+Button/styles/disabled = SubResource("StyleBoxFlat_e01be")
+Button/styles/disabled_mirrored = SubResource("StyleBoxFlat_e01be")
+Button/styles/focus = SubResource("StyleBoxFlat_e01be")
+Button/styles/hover = SubResource("StyleBoxFlat_xnm3i")
+Button/styles/normal = SubResource("StyleBoxFlat_xnm3i")
+Button/styles/normal_mirrored = SubResource("StyleBoxFlat_xnm3i")
+Button/styles/pressed = SubResource("StyleBoxFlat_xnm3i")

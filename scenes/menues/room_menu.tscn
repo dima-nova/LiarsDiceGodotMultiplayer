@@ -1,0 +1,278 @@
+[gd_scene load_steps=12 format=3 uid="uid://tt48vk61w5du"]
+
+[ext_resource type="Script" path="res://scripts/lobby_menu_controller.gd" id="1_0faub"]
+[ext_resource type="Texture2D" uid="uid://bw3doktprechn" path="res://assets/UI/images/BackButton.png" id="1_vts4m"]
+[ext_resource type="Texture2D" uid="uid://baq61ura8ivoa" path="res://assets/UI/images/ProfileButton.png" id="2_ty7o2"]
+[ext_resource type="FontFile" uid="uid://crl5ijiieuwbe" path="res://assets/UI/fonts/Nunito-SemiBold.ttf" id="3_2pxq2"]
+[ext_resource type="Theme" uid="uid://dsdcmw4joy3em" path="res://assets/UI/themes/edit_line.tres" id="4_lg6r7"]
+[ext_resource type="Theme" uid="uid://cgs7jo607d0hp" path="res://assets/UI/themes/button.tres" id="5_gydaq"]
+[ext_resource type="Theme" uid="uid://del6bdh06shb7" path="res://assets/UI/themes/switch_button.tres" id="7_xr2ld"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t75qh"]
+size = Vector2(108.981, 108.981)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tih44"]
+size = Vector2(149.5, 152.75)
+
+[sub_resource type="Theme" id="Theme_xdyju"]
+Label/font_sizes/font_size = 36
+Label/fonts/font = ExtResource("3_2pxq2")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hynbj"]
+bg_color = Color(0, 0, 0, 0.2)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[node name="RoomMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0faub")
+
+[node name="BG" type="Control" parent="."]
+z_index = -5
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="BG"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.00784314, 0.65098, 0.462745, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="BG"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 67.0
+grow_horizontal = 2
+color = Color(0, 0.352941, 0.356863, 1)
+
+[node name="TopBar" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 67.0
+grow_horizontal = 2
+mouse_filter = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TopBar"]
+layout_mode = 2
+offset_right = 405.0
+offset_bottom = 67.0
+mouse_filter = 2
+
+[node name="ExitButton" type="Sprite2D" parent="TopBar/HBoxContainer"]
+position = Vector2(34, 32)
+scale = Vector2(0.348684, 0.348684)
+texture = ExtResource("1_vts4m")
+
+[node name="ExitArea" type="Area2D" parent="TopBar/HBoxContainer/ExitButton"]
+position = Vector2(127.029, 81.4286)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TopBar/HBoxContainer/ExitButton/ExitArea"]
+position = Vector2(-124.161, -78.5607)
+shape = SubResource("RectangleShape2D_t75qh")
+
+[node name="ProfileButton" type="Sprite2D" parent="TopBar/HBoxContainer"]
+position = Vector2(372, 33)
+scale = Vector2(0.288461, 0.288461)
+texture = ExtResource("2_ty7o2")
+
+[node name="ProfileArea" type="Area2D" parent="TopBar/HBoxContainer/ProfileButton"]
+position = Vector2(32.5, 35.75)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TopBar/HBoxContainer/ProfileButton/ProfileArea"]
+position = Vector2(-32.5, -37.375)
+shape = SubResource("RectangleShape2D_tih44")
+
+[node name="CreateLobbyMenu" type="MarginContainer" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 294
+theme_override_constants/margin_right = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CreateLobbyMenu"]
+layout_mode = 2
+theme_override_constants/separation = 26
+
+[node name="Label" type="Label" parent="CreateLobbyMenu/VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_xdyju")
+text = "Create new lobby"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CreateLobbyMenu/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 38
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CreateLobbyMenu/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 9
+
+[node name="NameEditLine" type="LineEdit" parent="CreateLobbyMenu/VBoxContainer/VBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("4_lg6r7")
+placeholder_text = "NAME"
+alignment = 1
+
+[node name="MaxPlayersEditLine" type="LineEdit" parent="CreateLobbyMenu/VBoxContainer/VBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("4_lg6r7")
+placeholder_text = "MAX PLAYERS"
+alignment = 1
+
+[node name="CreateLobbyButton" type="Button" parent="CreateLobbyMenu/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("5_gydaq")
+text = "CREATE LOBBY"
+
+[node name="MenuesOrderButtons" type="Control" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="SwitchToCreateLobbyButton" type="Button" parent="MenuesOrderButtons"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 193.0
+offset_top = 624.0
+offset_right = 377.0
+offset_bottom = 689.0
+theme = ExtResource("7_xr2ld")
+text = "Create lobby"
+
+[node name="SwitchToLobbiesButton" type="Button" parent="MenuesOrderButtons"]
+unique_name_in_owner = true
+z_index = 1
+layout_mode = 0
+offset_left = 28.0
+offset_top = 624.0
+offset_right = 198.0
+offset_bottom = 689.0
+theme = ExtResource("7_xr2ld")
+disabled = true
+text = "Lobbies"
+
+[node name="LobbiesOrderMenu" type="MarginContainer" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = -644.0
+offset_right = -10.0
+offset_bottom = -111.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="LobbiesOrderMenu"]
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="LobbiesList" type="VBoxContainer" parent="LobbiesOrderMenu/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 8
+
+[node name="AuthorityOrderMenu" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="AuthorityOrderMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 183.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = -130
+
+[node name="MenuName" type="Label" parent="AuthorityOrderMenu/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_2pxq2")
+theme_override_font_sizes/font_size = 36
+text = "Write nickname"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="AuthorityOrderMenu/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 170
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 200
+
+[node name="Panel" type="Panel" parent="AuthorityOrderMenu/VBoxContainer/MarginContainer"]
+z_index = -2
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_hynbj")
+
+[node name="MarginContainer" type="MarginContainer" parent="AuthorityOrderMenu/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="AuthorityOrderMenu/VBoxContainer/MarginContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="GuestNameLineEdit" type="LineEdit" parent="AuthorityOrderMenu/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("4_lg6r7")
+placeholder_text = "Type your name"
+alignment = 1
+max_length = 50
+
+[node name="ConnectButton" type="Button" parent="AuthorityOrderMenu/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("5_gydaq")
+text = "Connect"
+
+[connection signal="pressed" from="CreateLobbyMenu/VBoxContainer/VBoxContainer/CreateLobbyButton" to="." method="_on_create_lobby_button_pressed"]
+[connection signal="pressed" from="MenuesOrderButtons/SwitchToCreateLobbyButton" to="." method="_on_switch_to_create_lobby_button_pressed"]
+[connection signal="pressed" from="MenuesOrderButtons/SwitchToLobbiesButton" to="." method="_on_switch_to_lobbies_button_pressed"]
+[connection signal="pressed" from="AuthorityOrderMenu/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/ConnectButton" to="." method="_on_play_as_guest_button_pressed"]

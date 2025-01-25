@@ -1,0 +1,19 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://dsdcmw4joy3em"]
+
+[ext_resource type="FontFile" uid="uid://crl5ijiieuwbe" path="res://assets/UI/fonts/Nunito-SemiBold.ttf" id="1_ib44a"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_npjy5"]
+content_margin_top = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.00392157, 0.427451, 0.384314, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[resource]
+LineEdit/font_sizes/font_size = 24
+LineEdit/fonts/font = ExtResource("1_ib44a")
+LineEdit/styles/focus = SubResource("StyleBoxFlat_npjy5")
+LineEdit/styles/normal = SubResource("StyleBoxFlat_npjy5")
+LineEdit/styles/read_only = SubResource("StyleBoxFlat_npjy5")

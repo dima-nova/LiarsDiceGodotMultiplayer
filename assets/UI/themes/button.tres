@@ -1,0 +1,41 @@
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://cgs7jo607d0hp"]
+
+[ext_resource type="FontFile" uid="uid://crl5ijiieuwbe" path="res://assets/UI/fonts/Nunito-SemiBold.ttf" id="1_jtjsl"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fbs6h"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8chqj"]
+content_margin_top = 19.0
+content_margin_bottom = 19.0
+bg_color = Color(0.00392157, 0.427451, 0.384314, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0vac2"]
+content_margin_top = 19.0
+content_margin_bottom = 19.0
+bg_color = Color(0, 0.352941, 0.356863, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ogm7i"]
+content_margin_top = 19.0
+content_margin_bottom = 19.0
+bg_color = Color(0, 0.286275, 0.286275, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[resource]
+Button/colors/font_color = Color(1, 1, 1, 1)
+Button/font_sizes/font_size = 24
+Button/fonts/font = ExtResource("1_jtjsl")
+Button/styles/focus = SubResource("StyleBoxEmpty_fbs6h")
+Button/styles/hover = SubResource("StyleBoxFlat_8chqj")
+Button/styles/normal = SubResource("StyleBoxFlat_0vac2")
+Button/styles/pressed = SubResource("StyleBoxFlat_ogm7i")

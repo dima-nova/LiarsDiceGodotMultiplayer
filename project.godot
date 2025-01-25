@@ -1,0 +1,29 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="dice_online_try_1"
+run/main_scene="res://scenes/menues/main_menu.tscn"
+config/features=PackedStringArray("4.3", "Forward Plus")
+config/icon="res://icon.svg"
+
+[autoload]
+
+SfxController="*res://scripts/sfx_controller.gd"
+MultiplayerManager="*res://scripts/multiplayer_manager.gd"
+AccountManager="*res://scripts/account_manager.gd"
+LobbiesSpawner="*res://scenes/menues/lobbies_spawner.tscn"
+
+[display]
+
+window/size/viewport_width=405
+window/size/viewport_height=720
+window/size/resizable=false

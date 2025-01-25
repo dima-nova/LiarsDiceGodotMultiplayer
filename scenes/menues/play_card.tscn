@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://6ff60cerx6g7"]
+
+[ext_resource type="FontFile" uid="uid://crl5ijiieuwbe" path="res://assets/UI/fonts/Nunito-SemiBold.ttf" id="1_ui4qx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_em0kh"]
+bg_color = Color(0.00312393, 0.495278, 0.376892, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[node name="PlayCard" type="Panel"]
+custom_minimum_size = Vector2(384, 58)
+offset_right = 384.0
+offset_bottom = 58.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_em0kh")
+
+[node name="PlayerName" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_top = -10.0
+offset_right = 385.0
+offset_bottom = 67.0
+theme_override_fonts/font = ExtResource("1_ui4qx")
+theme_override_font_sizes/font_size = 44
+text = "Player Name"
+horizontal_alignment = 1
+vertical_alignment = 1
