@@ -1,0 +1,160 @@
+[gd_scene load_steps=10 format=3 uid="uid://tt48vk61w5du"]
+
+[ext_resource type="Script" path="res://scripts/player_setup_menu_controller.gd" id="1_qayl3"]
+[ext_resource type="Texture2D" uid="uid://bw3doktprechn" path="res://assets/UI/images/BackButton.png" id="2_tdn8s"]
+[ext_resource type="Texture2D" uid="uid://baq61ura8ivoa" path="res://assets/UI/images/ProfileButton.png" id="3_7dphd"]
+[ext_resource type="FontFile" uid="uid://crl5ijiieuwbe" path="res://assets/UI/fonts/Nunito-SemiBold.ttf" id="4_nu0ah"]
+[ext_resource type="Theme" uid="uid://dsdcmw4joy3em" path="res://assets/UI/themes/edit_line.tres" id="5_odg4r"]
+[ext_resource type="Theme" uid="uid://cgs7jo607d0hp" path="res://assets/UI/themes/button.tres" id="6_0wkr4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t75qh"]
+size = Vector2(108.981, 108.981)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tih44"]
+size = Vector2(149.5, 152.75)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hynbj"]
+bg_color = Color(0, 0, 0, 0.2)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[node name="PlayerSetupMenu" type="Control" node_paths=PackedStringArray("player_name_line_edit")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qayl3")
+player_name_line_edit = NodePath("PlayerInfoSetupMenu/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/PlayerNameLineEdit")
+
+[node name="BG" type="Control" parent="."]
+z_index = -5
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="BG"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.00784314, 0.65098, 0.462745, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="BG"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 67.0
+grow_horizontal = 2
+color = Color(0, 0.352941, 0.356863, 1)
+
+[node name="TopBar" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 67.0
+grow_horizontal = 2
+mouse_filter = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TopBar"]
+layout_mode = 2
+offset_right = 405.0
+offset_bottom = 67.0
+mouse_filter = 2
+
+[node name="ExitButton" type="Sprite2D" parent="TopBar/HBoxContainer"]
+position = Vector2(34, 32)
+scale = Vector2(0.348684, 0.348684)
+texture = ExtResource("2_tdn8s")
+
+[node name="ExitArea" type="Area2D" parent="TopBar/HBoxContainer/ExitButton"]
+position = Vector2(127.029, 81.4286)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TopBar/HBoxContainer/ExitButton/ExitArea"]
+position = Vector2(-124.161, -78.5607)
+shape = SubResource("RectangleShape2D_t75qh")
+
+[node name="ProfileButton" type="Sprite2D" parent="TopBar/HBoxContainer"]
+position = Vector2(372, 33)
+scale = Vector2(0.288461, 0.288461)
+texture = ExtResource("3_7dphd")
+
+[node name="ProfileArea" type="Area2D" parent="TopBar/HBoxContainer/ProfileButton"]
+position = Vector2(32.5, 35.75)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TopBar/HBoxContainer/ProfileButton/ProfileArea"]
+position = Vector2(-32.5, -37.375)
+shape = SubResource("RectangleShape2D_tih44")
+
+[node name="PlayerInfoSetupMenu" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PlayerInfoSetupMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 183.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = -130
+
+[node name="MenuName" type="Label" parent="PlayerInfoSetupMenu/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_nu0ah")
+theme_override_font_sizes/font_size = 36
+text = "Write nickname"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="PlayerInfoSetupMenu/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 170
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 200
+
+[node name="Panel" type="Panel" parent="PlayerInfoSetupMenu/VBoxContainer/MarginContainer"]
+z_index = -2
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_hynbj")
+
+[node name="MarginContainer" type="MarginContainer" parent="PlayerInfoSetupMenu/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PlayerInfoSetupMenu/VBoxContainer/MarginContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="PlayerNameLineEdit" type="LineEdit" parent="PlayerInfoSetupMenu/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("5_odg4r")
+placeholder_text = "Type your name"
+alignment = 1
+max_length = 50
+
+[node name="ConnectButton" type="Button" parent="PlayerInfoSetupMenu/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("6_0wkr4")
+text = "Connect"
+
+[connection signal="pressed" from="PlayerInfoSetupMenu/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/ConnectButton" to="." method="_on_connect_button_pressed"]

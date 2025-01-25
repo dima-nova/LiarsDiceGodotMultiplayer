@@ -5,15 +5,8 @@ extends Control
 
 const SCALE_VALUE = 0.08
 
-
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	MultiplayerManager.connected_to_server_signal.connect(connected_to_server)
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
 
 
 func _on_exit_area_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
@@ -57,7 +50,7 @@ func _on_start_button_pressed() -> void:
 		print("Server not response")
 		
 func connected_to_server():
-	get_tree().change_scene_to_file("res://scenes/menues/room_menu.tscn")
+	get_tree().change_scene_to_file("res://scenes/menues/player_setup_menu.tscn")
 	
 
 func _on_settings_button_pressed() -> void:

@@ -15,6 +15,3 @@ func play_sound(sound_name):
 		return
 	if audio_effects_dict[sound_name]:
 		audio_effects_dict[sound_name].play()
-
-func _process(delta: float) -> void:
-	pass

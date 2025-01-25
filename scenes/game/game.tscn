@@ -1,0 +1,134 @@
+[gd_scene load_steps=8 format=3 uid="uid://bydo21oj4y82x"]
+
+[ext_resource type="PackedScene" uid="uid://m1y2a7jnwaur" path="res://scenes/objects/player_game_card.tscn" id="1_1qpfq"]
+[ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_4axyn"]
+[ext_resource type="Theme" uid="uid://bnqc5kvvuoqe1" path="res://assets/UI/themes/game_button.tres" id="1_dirhi"]
+[ext_resource type="Texture2D" uid="uid://ck7t7rg7fidva" path="res://assets/UI/images/RaiseImage.png" id="2_th4ax"]
+[ext_resource type="Texture2D" uid="uid://bgra1i1nto2qw" path="res://assets/UI/images/ChechImage.png" id="3_a0l43"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i2ds1"]
+bg_color = Color(0.00392157, 0.564706, 0.431373, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="Curve2D" id="Curve2D_eqku1"]
+_data = {
+"points": PackedVector2Array(-87.9275, -2.1892, 87.9275, 2.1892, 234.574, 372.523, 0, 0, 0, 0, 336.863, 330, 0, 0, 0, 0, 349.169, 244.428, 0, 0, 0, 0, 336.094, 130, 68.7989, -3.20792, -68.7989, 3.20792, 229.19, 74.6863, 0, 0, 0, 0, 125.362, 130, 0, 0, 0, 0, 114.595, 249.193, -4.95911e-05, 1.11988, 4.95911e-05, -1.11988, 133.053, 330, -70.8366, 5.59949, 70.8366, -5.59949, 234.574, 372.523)
+}
+point_count = 9
+
+[node name="Game" type="Node2D" node_paths=PackedStringArray("spawn_point", "players_list")]
+script = ExtResource("1_4axyn")
+player_game_card = ExtResource("1_1qpfq")
+spawn_point = NodePath("PlayersPath/SpawnPoint")
+players_list = NodePath("Players")
+
+[node name="BG" type="CanvasLayer" parent="."]
+layer = -5
+
+[node name="BG" type="Control" parent="BG"]
+z_index = -5
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="BG/BG"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.00784314, 0.65098, 0.462745, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="BG/BG"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -92.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0, 0.352941, 0.356863, 1)
+
+[node name="Panel" type="Panel" parent="BG/BG"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -73.0
+offset_top = -139.0
+offset_right = 73.0
+offset_bottom = 7.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_i2ds1")
+
+[node name="PlayersPath" type="Path2D" parent="."]
+position = Vector2(-97, -4.02089)
+scale = Vector2(1.30023, 1.19193)
+curve = SubResource("Curve2D_eqku1")
+
+[node name="SpawnPoint" type="PathFollow2D" parent="PlayersPath"]
+position = Vector2(234.574, 372.523)
+rotates = false
+
+[node name="MainUI" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="MainUI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MainUI/Control"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -93.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 18
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 18
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MainUI/Control/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="RaiseButton" type="Button" parent="MainUI/Control/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_dirhi")
+text = "   Raise"
+
+[node name="Sprite2D" type="Sprite2D" parent="MainUI/Control/MarginContainer/HBoxContainer/RaiseButton"]
+position = Vector2(48, 33.2083)
+scale = Vector2(0.34375, 0.37128)
+texture = ExtResource("2_th4ax")
+
+[node name="ChechButton" type="Button" parent="MainUI/Control/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_dirhi")
+text = "   Check"
+
+[node name="Sprite2D" type="Sprite2D" parent="MainUI/Control/MarginContainer/HBoxContainer/ChechButton"]
+position = Vector2(44.9248, 28.9014)
+scale = Vector2(0.449792, 0.434215)
+texture = ExtResource("3_a0l43")
+
+[node name="Players" type="Node2D" parent="."]

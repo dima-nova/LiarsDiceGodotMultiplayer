@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://dsjrxgc4rmjmb"]
+[gd_scene load_steps=9 format=3 uid="uid://dsjrxgc4rmjmb"]
 
-[ext_resource type="Texture2D" uid="uid://bw3doktprechn" path="res://assets/UI/images/BackButton.png" id="1_gd1fq"]
-[ext_resource type="Texture2D" uid="uid://baq61ura8ivoa" path="res://assets/UI/images/ProfileButton.png" id="2_kmmbc"]
-[ext_resource type="Theme" uid="uid://cgs7jo607d0hp" path="res://assets/UI/themes/button.tres" id="3_alflv"]
-[ext_resource type="PackedScene" uid="uid://6ff60cerx6g7" path="res://scenes/menues/play_card.tscn" id="3_nw8e0"]
-[ext_resource type="FontFile" uid="uid://crl5ijiieuwbe" path="res://assets/UI/fonts/Nunito-SemiBold.ttf" id="4_hyhnm"]
+[ext_resource type="Script" path="res://scenes/menues/game_waiting_menu.gd" id="1_naeta"]
+[ext_resource type="PackedScene" uid="uid://6ff60cerx6g7" path="res://scenes/menues/play_card.tscn" id="2_0qr7d"]
+[ext_resource type="Texture2D" uid="uid://bw3doktprechn" path="res://assets/UI/images/BackButton.png" id="3_mum2x"]
+[ext_resource type="Texture2D" uid="uid://baq61ura8ivoa" path="res://assets/UI/images/ProfileButton.png" id="4_obnmg"]
+[ext_resource type="Theme" uid="uid://cgs7jo607d0hp" path="res://assets/UI/themes/button.tres" id="5_y3xg4"]
+[ext_resource type="FontFile" uid="uid://crl5ijiieuwbe" path="res://assets/UI/fonts/Nunito-SemiBold.ttf" id="6_8sb6a"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fl2m5"]
 size = Vector2(108.981, 108.981)
@@ -12,13 +13,16 @@ size = Vector2(108.981, 108.981)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i05pe"]
 size = Vector2(149.5, 152.75)
 
-[node name="LobbyWaitingMenu" type="Control"]
+[node name="GameWaitingMenu" type="Control" node_paths=PackedStringArray("players_list")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_naeta")
+players_list = NodePath("MainUI/MarginContainer/ScrollContainer/PlayersList")
+player_card = ExtResource("2_0qr7d")
 
 [node name="BG" type="Control" parent="."]
 z_index = -5
@@ -63,7 +67,7 @@ mouse_filter = 2
 [node name="ExitButton" type="Sprite2D" parent="TopBar/HBoxContainer"]
 position = Vector2(34, 32)
 scale = Vector2(0.348684, 0.348684)
-texture = ExtResource("1_gd1fq")
+texture = ExtResource("3_mum2x")
 
 [node name="ExitArea" type="Area2D" parent="TopBar/HBoxContainer/ExitButton"]
 position = Vector2(127.029, 81.4286)
@@ -76,7 +80,7 @@ shape = SubResource("RectangleShape2D_fl2m5")
 visible = false
 position = Vector2(372, 33)
 scale = Vector2(0.288461, 0.288461)
-texture = ExtResource("2_kmmbc")
+texture = ExtResource("4_obnmg")
 
 [node name="ProfileArea" type="Area2D" parent="TopBar/HBoxContainer/ProfileButton"]
 position = Vector2(32.5, 35.75)
@@ -101,9 +105,9 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -9.0
-offset_top = 134.0
+offset_top = 172.0
 offset_right = 10.0
-offset_bottom = -164.0
+offset_bottom = -112.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 16
@@ -113,58 +117,29 @@ theme_override_constants/margin_right = 16
 layout_mode = 2
 horizontal_scroll_mode = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MainUI/MarginContainer/ScrollContainer"]
+[node name="PlayersList" type="VBoxContainer" parent="MainUI/MarginContainer/ScrollContainer"]
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="PlayCard" parent="MainUI/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("3_nw8e0")]
-layout_mode = 2
-
-[node name="PlayCard2" parent="MainUI/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("3_nw8e0")]
-layout_mode = 2
-
-[node name="PlayCard3" parent="MainUI/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("3_nw8e0")]
-layout_mode = 2
-
-[node name="PlayCard4" parent="MainUI/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("3_nw8e0")]
-layout_mode = 2
-
-[node name="AuthorButton" type="Button" parent="MainUI"]
-visible = false
+[node name="StartGameButton" type="Button" parent="MainUI"]
 layout_mode = 2
 offset_left = 16.0
 offset_top = 554.0
 offset_right = 389.0
 offset_bottom = 626.0
-theme = ExtResource("3_alflv")
+theme = ExtResource("5_y3xg4")
 text = "Start Game"
 
 [node name="Label" type="Label" parent="MainUI"]
 layout_mode = 0
-offset_top = 73.0
+offset_top = 87.0
 offset_right = 405.0
-offset_bottom = 123.0
+offset_bottom = 137.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("4_hyhnm")
+theme_override_fonts/font = ExtResource("6_8sb6a")
 theme_override_font_sizes/font_size = 36
-text = "Players in Lobby"
+text = "Players in Game"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="WaitingLabel" type="Label" parent="MainUI"]
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 1.0
-offset_top = -120.0
-offset_right = -1.0
-offset_bottom = -13.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_fonts/font = ExtResource("4_hyhnm")
-theme_override_font_sizes/font_size = 37
-text = "Waiting when author start the game..."
-horizontal_alignment = 1
-autowrap_mode = 2
+[connection signal="pressed" from="MainUI/StartGameButton" to="." method="_on_start_game_button_pressed"]
