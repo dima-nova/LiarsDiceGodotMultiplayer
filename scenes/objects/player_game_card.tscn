@@ -30,23 +30,21 @@ wait_time = 15.0
 one_shot = true
 
 [node name="UI" type="Node2D" parent="."]
-position = Vector2(-29, -41)
 
 [node name="Panel" type="Panel" parent="UI"]
 z_index = 5
-offset_left = -3.0
-offset_top = -2.0
-offset_right = 55.0
-offset_bottom = 80.0
-scale = Vector2(1.12, 1.12)
+offset_left = -29.0
+offset_top = -46.0
+offset_right = 31.0
+offset_bottom = 40.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_k2xy0")
 
 [node name="PlayerNameLabel" type="Label" parent="UI"]
 z_index = 5
-offset_left = -3.0
-offset_top = 65.0
-offset_right = 230.0
-offset_bottom = 150.0
+offset_left = -32.0
+offset_top = 18.0
+offset_right = 201.0
+offset_bottom = 103.0
 scale = Vector2(0.280001, 0.280001)
 theme_override_fonts/font = ExtResource("2_noxj5")
 theme_override_font_sizes/font_size = 62
@@ -56,27 +54,27 @@ vertical_alignment = 1
 
 [node name="DicesNumberLabel" type="Label" parent="UI"]
 z_index = 5
-offset_left = 45.0
-offset_top = -4.0
-offset_right = 75.0
-offset_bottom = 65.0
-scale = Vector2(0.44, 0.44)
+offset_left = 17.0
+offset_top = -48.0
+offset_right = 47.0
+offset_bottom = 21.0
+scale = Vector2(0.36, 0.36)
 theme_override_fonts/font = ExtResource("2_noxj5")
 theme_override_font_sizes/font_size = 50
 text = "5"
 
 [node name="Sprite2D" type="Sprite2D" parent="UI"]
 z_index = 5
-position = Vector2(29, 41)
-scale = Vector2(0.437586, 0.437586)
+position = Vector2(1.37311, -4.6269)
+scale = Vector2(0.446066, 0.446066)
 texture = ExtResource("3_xpqrn")
 
 [node name="ProgressBar" type="ProgressBar" parent="UI"]
 z_index = 4
-offset_left = -2.0
-offset_top = -1.0
-offset_right = 52.0
-offset_bottom = 76.0
+offset_left = -27.0
+offset_top = -45.0
+offset_right = 22.0
+offset_bottom = 27.0
 scale = Vector2(1.16, 1.16)
 theme_override_styles/background = SubResource("StyleBoxEmpty_5g1n8")
 theme_override_styles/fill = SubResource("StyleBoxFlat_cah2f")

@@ -11,7 +11,6 @@ var player_id: int
 var is_move: bool
 
 
-
 func _ready() -> void:
 	pass
 
