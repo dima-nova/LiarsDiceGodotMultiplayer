@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bydo21oj4y82x"]
+[gd_scene load_steps=9 format=3 uid="uid://bydo21oj4y82x"]
 
 [ext_resource type="PackedScene" uid="uid://m1y2a7jnwaur" path="res://scenes/objects/player_game_card.tscn" id="1_1qpfq"]
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_4axyn"]
@@ -18,6 +18,11 @@ _data = {
 "points": PackedVector2Array(-67.5785, 11.5524, 67.5785, -11.5524, 230, 359.938, 0, 0, 0, 0, 328.403, 324.701, 0, 0, 0, 0, 349.169, 244.428, 0, 0, 0, 0, 336.094, 130, 68.7989, -3.20792, -68.7989, 3.20792, 228.421, 78.0422, 0, 0, 0, 0, 125.362, 130, 0, 0, 0, 0, 114.595, 249.193, -4.95911e-05, 1.11988, 4.95911e-05, -1.11988, 133.053, 330, 0, 0, 0, 0, 230, 359.938)
 }
 point_count = 9
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_fhjrw"]
+properties/0/path = NodePath(".:is_someone_can_read_this")
+properties/0/spawn = true
+properties/0/replication_mode = 1
 
 [node name="Game" type="Node2D" node_paths=PackedStringArray("spawn_point", "players_list")]
 script = ExtResource("1_4axyn")
@@ -78,7 +83,7 @@ scale = Vector2(1.30023, 1.19193)
 curve = SubResource("Curve2D_eqku1")
 
 [node name="SpawnPoint" type="PathFollow2D" parent="PlayersPath"]
-position = Vector2(225.948, 78.1779)
+position = Vector2(225.948, 78.1778)
 progress = 430.076
 rotates = false
 
@@ -133,3 +138,6 @@ scale = Vector2(0.449792, 0.434215)
 texture = ExtResource("3_a0l43")
 
 [node name="Players" type="Node2D" parent="."]
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_fhjrw")
