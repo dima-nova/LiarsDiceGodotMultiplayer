@@ -1,10 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://bydo21oj4y82x"]
+[gd_scene load_steps=11 format=3 uid="uid://bydo21oj4y82x"]
 
 [ext_resource type="PackedScene" uid="uid://m1y2a7jnwaur" path="res://scenes/objects/player_game_card.tscn" id="1_1qpfq"]
-[ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_4axyn"]
+[ext_resource type="Script" path="res://scripts/other/game.gd" id="1_ccd8n"]
 [ext_resource type="Theme" uid="uid://bnqc5kvvuoqe1" path="res://assets/UI/themes/game_button.tres" id="1_dirhi"]
 [ext_resource type="Texture2D" uid="uid://ck7t7rg7fidva" path="res://assets/UI/images/RaiseImage.png" id="2_th4ax"]
 [ext_resource type="Texture2D" uid="uid://bgra1i1nto2qw" path="res://assets/UI/images/ChechImage.png" id="3_a0l43"]
+[ext_resource type="FontFile" uid="uid://crl5ijiieuwbe" path="res://assets/UI/fonts/Nunito-SemiBold.ttf" id="6_ydu3b"]
+[ext_resource type="PackedScene" uid="uid://du14jegpuod1q" path="res://scenes/objects/dice.tscn" id="7_fae05"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i2ds1"]
 bg_color = Color(0.00392157, 0.564706, 0.431373, 1)
@@ -24,11 +26,13 @@ properties/0/path = NodePath(".:is_someone_can_read_this")
 properties/0/spawn = true
 properties/0/replication_mode = 1
 
-[node name="Game" type="Node2D" node_paths=PackedStringArray("spawn_point", "players_list")]
-script = ExtResource("1_4axyn")
+[node name="Game" type="Node2D" node_paths=PackedStringArray("spawn_point", "players_list", "main_bet_dice", "main_bet_value_label")]
+script = ExtResource("1_ccd8n")
 player_game_card = ExtResource("1_1qpfq")
 spawn_point = NodePath("PlayersPath/SpawnPoint")
 players_list = NodePath("Players")
+main_bet_dice = NodePath("MainUI/Bet/MainBetDice")
+main_bet_value_label = NodePath("MainUI/Bet/MainBetDiceNumber")
 
 [node name="BG" type="CanvasLayer" parent="."]
 layer = -5
@@ -136,6 +140,29 @@ text = "   Check"
 position = Vector2(44.9248, 28.9014)
 scale = Vector2(0.449792, 0.434215)
 texture = ExtResource("3_a0l43")
+
+[node name="Bet" type="Node2D" parent="MainUI"]
+
+[node name="MainBetDiceNumber" type="Label" parent="MainUI/Bet"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 160.0
+offset_top = 225.0
+offset_right = 244.0
+offset_bottom = 321.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("6_ydu3b")
+theme_override_font_sizes/font_size = 70
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MainBetDice" parent="MainUI/Bet" instance=ExtResource("7_fae05")]
+position = Vector2(204, 331)
 
 [node name="Players" type="Node2D" parent="."]
 

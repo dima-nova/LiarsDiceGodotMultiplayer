@@ -16,10 +16,11 @@ config/features=PackedStringArray("4.3", "Forward Plus")
 
 [autoload]
 
-SfxController="*res://scripts/sfx_controller.gd"
-MultiplayerManager="*res://scripts/multiplayer_manager.gd"
-AccountManager="*res://scripts/account_manager.gd"
+SfxController="*res://scripts/singlton/sfx_controller.gd"
+MultiplayerManager="*res://scripts/singlton/multiplayer_manager.gd"
+AccountManager="*res://scripts/singlton/account_manager.gd"
 PlayersSpawner="*res://scenes/objects/players_spawner.tscn"
+GameManager="*res://scripts/singlton/game_manager.gd"
 
 [display]
 

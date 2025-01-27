@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://tt48vk61w5du"]
 
-[ext_resource type="Script" path="res://scripts/player_setup_menu_controller.gd" id="1_qayl3"]
+[ext_resource type="Script" path="res://scripts/other/player_setup_menu_controller.gd" id="1_qayl3"]
 [ext_resource type="Texture2D" uid="uid://bw3doktprechn" path="res://assets/UI/images/BackButton.png" id="2_tdn8s"]
 [ext_resource type="Texture2D" uid="uid://baq61ura8ivoa" path="res://assets/UI/images/ProfileButton.png" id="3_7dphd"]
 [ext_resource type="FontFile" uid="uid://crl5ijiieuwbe" path="res://assets/UI/fonts/Nunito-SemiBold.ttf" id="4_nu0ah"]
