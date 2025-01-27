@@ -14,14 +14,20 @@ var current_face_value: int:
 	set(new_number):
 		current_face_value = clamp(new_number, 1, 6)
 		
+var spawn_step: float
+		
 		
 
 func _ready() -> void:
+	
+	# Spawn player cards
+	spawn_point.progress_ratio = 0.0
+	spawn_step = 1.0 / PlayersSpawner.get_child_count()
 	player_cards_generation()
 	
 	# Starting the game
 	randomize()
-	current_player_id = randi() % PlayersSpawner.get_child_count() + 1
+	current_player_id = randi() % PlayersSpawner.get_child_count()
 	PlayersSpawner.get_child(current_player_id).is_move = true
 	current_bet_number = 0
 	current_face_value = 1
@@ -33,18 +39,28 @@ func _process(delta: float) -> void:
 
 	
 func player_cards_generation():
-		spawn_point.progress_ratio = 0.0
-		var spawn_step = 1.0 / PlayersSpawner.get_child_count()
 
-		# Own card 
-		add_player_card(multiplayer.get_unique_id(), true)
-		spawn_point.progress_ratio += spawn_step
-	
-		#other cards
 		for player: Player in PlayersSpawner.get_children():
 			if !str(player.player_id) in players.keys():
-				add_player_card(player.player_id)
-				spawn_point.progress_ratio += spawn_step
+				if player.player_id == multiplayer.get_unique_id():
+					add_player_card(multiplayer.get_unique_id(), true)
+					spawn_point.progress_ratio += spawn_step
+				elif spawn_point.progress_ratio > 0:
+					add_player_card(player.player_id)
+					spawn_point.progress_ratio += spawn_step
+					
+		if PlayersSpawner.get_child_count() > players.keys().size():
+			player_cards_generation()
+
+		## Own card 
+		#add_player_card(multiplayer.get_unique_id(), true)
+		#spawn_point.progress_ratio += spawn_step
+	#
+		##other cards
+		#for player: Player in PlayersSpawner.get_children():
+			#if !str(player.player_id) in players.keys():
+				#add_player_card(player.player_id)
+				#spawn_point.progress_ratio += spawn_step
 		
 func add_player_card(player_id, is_own: bool=false):
 	var player: Player = PlayersSpawner.get_node(str(player_id))
