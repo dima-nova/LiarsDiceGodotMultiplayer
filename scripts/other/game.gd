@@ -6,6 +6,7 @@ extends Node2D
 @export var players_list: Node2D
 @export var main_bet_dice: Node2D
 @export var main_bet_value_label: Label
+@export var dices_list: Node2D
 
 var players: Dictionary
 var spawn_step: float
@@ -15,6 +16,7 @@ var spawn_step: float
 func _ready() -> void:
 	# Connecting signals
 	GameManager.bet_update.connect(update_bet)
+	GameManager.round_starting.connect(update_dices)
 	
 	# Spawn player cards
 	spawn_point.progress_ratio = 0.0
@@ -24,9 +26,20 @@ func _ready() -> void:
 	# Updating start bet
 	update_bet()
 	
+	## Updating dices
+	update_dices()
+	
 func update_bet():
 	main_bet_dice.set_dice_value(GameManager.current_face_value)
 	main_bet_value_label.text = str(GameManager.current_bet_number)
+	
+func update_dices():
+	var player_dices = PlayersSpawner.get_node(str(multiplayer.get_unique_id())).dices
+	for dice_i in dices_list.get_child_count():
+		dices_list.get_child(dice_i).roll()
+		dices_list.get_child(dice_i).set_dice_value(player_dices[dice_i])
+		
+		
 	
 
 func player_cards_generation():

@@ -76,8 +76,8 @@ func add_player_info(player_id: int, player_name: String):
 @rpc("any_peer", "call_local")
 func start_game():
 	if multiplayer.is_server():
-		GameManager.start_game()
 		is_game_started = true
+		GameManager.start_game()
 		return
 	
 	get_tree().change_scene_to_file("res://scenes/game/game.tscn")

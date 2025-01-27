@@ -1,6 +1,7 @@
 extends Node
 
 signal bet_update
+signal round_starting
 
 # Game variables
 @export var current_player_id: int
@@ -17,13 +18,13 @@ func _ready() -> void:
 func start_game():
 	if multiplayer.is_server():
 		prepare_for_game()
+		start_round()
 	
 
 func prepare_for_game():
 	if multiplayer.is_server():
 		randomize()
 		current_player_id = randi() % PlayersSpawner.get_child_count()
-		print(current_player_id)
 		PlayersSpawner.get_child(current_player_id).is_move = true
 		current_bet_number = 0
 		current_face_value = 1
@@ -42,6 +43,21 @@ func send_game_state(current_player_id_: int, current_bet_number_: int, current_
 	bet_update.emit()
 
 
+func start_round():
+	
+	# Rolling dices
+	for player: Player in PlayersSpawner.get_children():
+		var res = player.roll_dices()
+		print(res)
+		print(PlayersSpawner.get_node(str(player.player_id)).dices)
+		
+	# Updating ui
+	update_dices_ui.rpc()
+
+
+@rpc("any_peer", "call_remote")
+func update_dices_ui():
+	round_starting.emit()
 
 func _process(delta: float) -> void:
 	pass

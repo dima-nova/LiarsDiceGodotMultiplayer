@@ -26,13 +26,14 @@ properties/0/path = NodePath(".:is_someone_can_read_this")
 properties/0/spawn = true
 properties/0/replication_mode = 1
 
-[node name="Game" type="Node2D" node_paths=PackedStringArray("spawn_point", "players_list", "main_bet_dice", "main_bet_value_label")]
+[node name="Game" type="Node2D" node_paths=PackedStringArray("spawn_point", "players_list", "main_bet_dice", "main_bet_value_label", "dices_list")]
 script = ExtResource("1_ccd8n")
 player_game_card = ExtResource("1_1qpfq")
 spawn_point = NodePath("PlayersPath/SpawnPoint")
 players_list = NodePath("Players")
 main_bet_dice = NodePath("MainUI/Bet/MainBetDice")
 main_bet_value_label = NodePath("MainUI/Bet/MainBetDiceNumber")
+dices_list = NodePath("MainUI/Dices")
 
 [node name="BG" type="CanvasLayer" parent="."]
 layer = -5
@@ -93,7 +94,7 @@ rotates = false
 
 [node name="MainUI" type="CanvasLayer" parent="."]
 
-[node name="Control" type="Control" parent="MainUI"]
+[node name="ActionButtons" type="Control" parent="MainUI"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -101,7 +102,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="MainUI/Control"]
+[node name="MarginContainer" type="MarginContainer" parent="MainUI/ActionButtons"]
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -115,28 +116,28 @@ theme_override_constants/margin_top = 18
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 18
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MainUI/Control/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MainUI/ActionButtons/MarginContainer"]
 layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="RaiseButton" type="Button" parent="MainUI/Control/MarginContainer/HBoxContainer"]
+[node name="RaiseButton" type="Button" parent="MainUI/ActionButtons/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("1_dirhi")
 text = "   Raise"
 
-[node name="Sprite2D" type="Sprite2D" parent="MainUI/Control/MarginContainer/HBoxContainer/RaiseButton"]
+[node name="Sprite2D" type="Sprite2D" parent="MainUI/ActionButtons/MarginContainer/HBoxContainer/RaiseButton"]
 position = Vector2(48, 33.2083)
 scale = Vector2(0.34375, 0.37128)
 texture = ExtResource("2_th4ax")
 
-[node name="ChechButton" type="Button" parent="MainUI/Control/MarginContainer/HBoxContainer"]
+[node name="ChechButton" type="Button" parent="MainUI/ActionButtons/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("1_dirhi")
 text = "   Check"
 
-[node name="Sprite2D" type="Sprite2D" parent="MainUI/Control/MarginContainer/HBoxContainer/ChechButton"]
+[node name="Sprite2D" type="Sprite2D" parent="MainUI/ActionButtons/MarginContainer/HBoxContainer/ChechButton"]
 position = Vector2(44.9248, 28.9014)
 scale = Vector2(0.449792, 0.434215)
 texture = ExtResource("3_a0l43")
@@ -163,6 +164,34 @@ vertical_alignment = 1
 
 [node name="MainBetDice" parent="MainUI/Bet" instance=ExtResource("7_fae05")]
 position = Vector2(204, 331)
+
+[node name="RaseInput" type="Control" parent="MainUI"]
+layout_mode = 3
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = 90.0
+offset_bottom = 268.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Dices" type="Node2D" parent="MainUI"]
+
+[node name="Dice1" parent="MainUI/Dices" instance=ExtResource("7_fae05")]
+position = Vector2(172, 525)
+
+[node name="Dice2" parent="MainUI/Dices" instance=ExtResource("7_fae05")]
+position = Vector2(232, 525)
+
+[node name="Dice3" parent="MainUI/Dices" instance=ExtResource("7_fae05")]
+position = Vector2(144, 580)
+
+[node name="Dice4" parent="MainUI/Dices" instance=ExtResource("7_fae05")]
+position = Vector2(202, 580)
+
+[node name="Dice5" parent="MainUI/Dices" instance=ExtResource("7_fae05")]
+position = Vector2(260, 580)
 
 [node name="Players" type="Node2D" parent="."]
 
