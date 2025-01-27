@@ -7,6 +7,14 @@ extends Node2D
 @export var main_bet_dice: Node2D
 @export var main_bet_value_label: Label
 @export var dices_list: Node2D
+@export var animation_player: AnimationPlayer
+@export var raise_menu_button: Button
+@export var action_buttons: HBoxContainer
+@export var waiting_label: Label
+@export var dice_number_slider: HSlider
+@export var dice_number_slider_label: Label
+@export var dice_face_value_order: Control
+@export var raise_input_menu: Control
 
 var players: Dictionary
 var spawn_step: float
@@ -17,6 +25,7 @@ func _ready() -> void:
 	# Connecting signals
 	GameManager.bet_update.connect(update_bet)
 	GameManager.round_starting.connect(update_dices)
+	GameManager.next_turn.connect(make_turn_possibility)
 	
 	# Spawn player cards
 	spawn_point.progress_ratio = 0.0
@@ -26,12 +35,26 @@ func _ready() -> void:
 	# Updating start bet
 	update_bet()
 	
-	## Updating dices
+	# Updating dices
 	update_dices()
+	
+	# Making turn possible
+	make_turn_possibility()
+
 	
 func update_bet():
 	main_bet_dice.set_dice_value(GameManager.current_face_value)
 	main_bet_value_label.text = str(GameManager.current_bet_number)
+	
+	dice_number_slider.min_value = GameManager.current_bet_number
+	dice_number_slider.value = dice_number_slider.min_value
+	dice_number_slider.max_value = dice_number_slider.min_value + 10
+	
+	dice_number_slider_label.text = str(dice_number_slider.min_value)
+	
+	dice_face_value_order.ordered_value = GameManager.current_face_value
+	print(dice_face_value_order.ordered_value)
+	
 	
 func update_dices():
 	var player_dices = PlayersSpawner.get_node(str(multiplayer.get_unique_id())).dices
@@ -39,8 +62,17 @@ func update_dices():
 		dices_list.get_child(dice_i).roll()
 		dices_list.get_child(dice_i).set_dice_value(player_dices[dice_i])
 		
-		
-	
+
+func make_turn_possibility():
+	if PlayersSpawner.get_child(GameManager.current_player_id).player_id == multiplayer.get_unique_id():
+		waiting_label.hide()
+		action_buttons.visible = true
+		raise_input_menu.visible = true
+	else:
+		action_buttons.hide()
+		raise_input_menu.hide()
+		waiting_label.visible = true
+			
 
 func player_cards_generation():
 	"""This function generate players cards on the game field"""
@@ -69,3 +101,23 @@ func add_player_card(player_id):
 	
 	players_list.add_child(new_player_card)
 	players[str(player_id)] = player.player_name
+
+
+func _on_raise_menu_button_pressed() -> void:
+	if raise_menu_button.text == "   Raise":
+		raise_menu_button.text = "   Close"
+		animation_player.play("raise_menu_open")
+	else:
+		raise_menu_button.text = "   Raise"
+		animation_player.play_backwards("raise_menu_open")
+
+
+func _on_dice_number_slider_value_changed(value: float) -> void:
+	dice_number_slider_label.text = str(value)
+
+
+func _on_raise_button_pressed() -> void:
+	var face_value = dice_face_value_order.ordered_value
+	var dice_number = dice_number_slider.value
+	
+	GameManager.raise_bet.rpc_id(1, multiplayer.get_unique_id(), face_value, dice_number)

@@ -15,6 +15,8 @@ var is_move: bool = false:
 	set(value):
 		if value:
 			animation_player.play("move")
+		else:
+			animation_player.play("RESET")
 var dices_number: int = 5:
 	set(value):
 		dices_number_label.text = str(value)

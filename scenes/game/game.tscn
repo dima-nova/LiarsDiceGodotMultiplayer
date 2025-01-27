@@ -1,12 +1,18 @@
-[gd_scene load_steps=11 format=3 uid="uid://bydo21oj4y82x"]
+[gd_scene load_steps=29 format=3 uid="uid://bydo21oj4y82x"]
 
 [ext_resource type="PackedScene" uid="uid://m1y2a7jnwaur" path="res://scenes/objects/player_game_card.tscn" id="1_1qpfq"]
 [ext_resource type="Script" path="res://scripts/other/game.gd" id="1_ccd8n"]
-[ext_resource type="Theme" uid="uid://bnqc5kvvuoqe1" path="res://assets/UI/themes/game_button.tres" id="1_dirhi"]
 [ext_resource type="Texture2D" uid="uid://ck7t7rg7fidva" path="res://assets/UI/images/RaiseImage.png" id="2_th4ax"]
 [ext_resource type="Texture2D" uid="uid://bgra1i1nto2qw" path="res://assets/UI/images/ChechImage.png" id="3_a0l43"]
 [ext_resource type="FontFile" uid="uid://crl5ijiieuwbe" path="res://assets/UI/fonts/Nunito-SemiBold.ttf" id="6_ydu3b"]
 [ext_resource type="PackedScene" uid="uid://du14jegpuod1q" path="res://scenes/objects/dice.tscn" id="7_fae05"]
+[ext_resource type="Script" path="res://scenes/game/dice_to_raise_order_controller.gd" id="7_yedju"]
+[ext_resource type="Texture2D" uid="uid://dletwho322gqw" path="res://assets/Dices/Dice_1.png" id="8_ocg3n"]
+[ext_resource type="Texture2D" uid="uid://dmtd28l7uac3e" path="res://assets/Dices/Dice_2.png" id="9_uegii"]
+[ext_resource type="Texture2D" uid="uid://dydmqou3x7ray" path="res://assets/Dices/Dice_3.png" id="10_xn3fg"]
+[ext_resource type="Texture2D" uid="uid://mbpokh3v4qjo" path="res://assets/Dices/Dice_4.png" id="11_6ooil"]
+[ext_resource type="Texture2D" uid="uid://cqyg0a8g5gkh7" path="res://assets/Dices/Dice_5.png" id="12_0d6yt"]
+[ext_resource type="Texture2D" uid="uid://dhfohmsmvyfrp" path="res://assets/Dices/Dice_6.png" id="13_yargo"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i2ds1"]
 bg_color = Color(0.00392157, 0.564706, 0.431373, 1)
@@ -21,12 +27,126 @@ _data = {
 }
 point_count = 9
 
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_fhjrw"]
-properties/0/path = NodePath(".:is_someone_can_read_this")
-properties/0/spawn = true
-properties/0/replication_mode = 1
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aknbx"]
+content_margin_top = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(2.40654e-07, 0.226991, 0.229702, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.633757, 0.633757, 0.633757, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
 
-[node name="Game" type="Node2D" node_paths=PackedStringArray("spawn_point", "players_list", "main_bet_dice", "main_bet_value_label", "dices_list")]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ahoc8"]
+content_margin_top = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0, 0.352941, 0.356863, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="Theme" id="Theme_a2h8k"]
+Button/colors/font_color = Color(1, 1, 1, 1)
+Button/colors/font_focus_color = Color(1, 1, 1, 1)
+Button/font_sizes/font_size = 26
+Button/fonts/font = ExtResource("6_ydu3b")
+Button/styles/disabled = SubResource("StyleBoxFlat_aknbx")
+Button/styles/focus = SubResource("StyleBoxFlat_ahoc8")
+Button/styles/hover = SubResource("StyleBoxFlat_ahoc8")
+Button/styles/normal = SubResource("StyleBoxFlat_ahoc8")
+Button/styles/pressed = SubResource("StyleBoxFlat_ahoc8")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8kstu"]
+bg_color = Color(0, 0.366785, 0.371368, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_g26sw"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_aj17q"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_avr1c"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vuaij"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h2uay"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_a6vmq"]
+
+[sub_resource type="Animation" id="Animation_pvvqy"]
+resource_name = "raise_menu_open"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MainUI/RaiseInput:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MainUI/RaiseInput:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 727), Vector2(0, 522), Vector2(0, 442)]
+}
+
+[sub_resource type="Animation" id="Animation_88pmr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MainUI/RaiseInput:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MainUI/RaiseInput:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 727)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qd5l5"]
+_data = {
+"RESET": SubResource("Animation_88pmr"),
+"raise_menu_open": SubResource("Animation_pvvqy")
+}
+
+[node name="Game" type="Node2D" node_paths=PackedStringArray("spawn_point", "players_list", "main_bet_dice", "main_bet_value_label", "dices_list", "animation_player", "raise_menu_button", "action_buttons", "waiting_label", "dice_number_slider", "dice_number_slider_label", "dice_face_value_order", "raise_input_menu")]
 script = ExtResource("1_ccd8n")
 player_game_card = ExtResource("1_1qpfq")
 spawn_point = NodePath("PlayersPath/SpawnPoint")
@@ -34,6 +154,14 @@ players_list = NodePath("Players")
 main_bet_dice = NodePath("MainUI/Bet/MainBetDice")
 main_bet_value_label = NodePath("MainUI/Bet/MainBetDiceNumber")
 dices_list = NodePath("MainUI/Dices")
+animation_player = NodePath("AnimationPlayer")
+raise_menu_button = NodePath("MainUI/ActionMenu/MarginContainer/ActionButtons/RaiseMenuButton")
+action_buttons = NodePath("MainUI/ActionMenu/MarginContainer/ActionButtons")
+waiting_label = NodePath("MainUI/ActionMenu/MarginContainer/WaitingLabel")
+dice_number_slider = NodePath("MainUI/RaiseInput/DiceNumberSlider")
+dice_number_slider_label = NodePath("MainUI/RaiseInput/DiceNumberSliderLabel")
+dice_face_value_order = NodePath("MainUI/RaiseInput/DiceToRaiseOrderButtons")
+raise_input_menu = NodePath("MainUI/RaiseInput")
 
 [node name="BG" type="CanvasLayer" parent="."]
 layer = -5
@@ -94,7 +222,7 @@ rotates = false
 
 [node name="MainUI" type="CanvasLayer" parent="."]
 
-[node name="ActionButtons" type="Control" parent="MainUI"]
+[node name="ActionMenu" type="Control" parent="MainUI"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -102,7 +230,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="MainUI/ActionButtons"]
+[node name="MarginContainer" type="MarginContainer" parent="MainUI/ActionMenu"]
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -116,31 +244,41 @@ theme_override_constants/margin_top = 18
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 18
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MainUI/ActionButtons/MarginContainer"]
+[node name="ActionButtons" type="HBoxContainer" parent="MainUI/ActionMenu/MarginContainer"]
+visible = false
 layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="RaiseButton" type="Button" parent="MainUI/ActionButtons/MarginContainer/HBoxContainer"]
+[node name="RaiseMenuButton" type="Button" parent="MainUI/ActionMenu/MarginContainer/ActionButtons"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme = ExtResource("1_dirhi")
+theme = SubResource("Theme_a2h8k")
 text = "   Raise"
 
-[node name="Sprite2D" type="Sprite2D" parent="MainUI/ActionButtons/MarginContainer/HBoxContainer/RaiseButton"]
+[node name="Sprite2D" type="Sprite2D" parent="MainUI/ActionMenu/MarginContainer/ActionButtons/RaiseMenuButton"]
 position = Vector2(48, 33.2083)
 scale = Vector2(0.34375, 0.37128)
 texture = ExtResource("2_th4ax")
 
-[node name="ChechButton" type="Button" parent="MainUI/ActionButtons/MarginContainer/HBoxContainer"]
+[node name="ChechButton" type="Button" parent="MainUI/ActionMenu/MarginContainer/ActionButtons"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme = ExtResource("1_dirhi")
+theme = SubResource("Theme_a2h8k")
 text = "   Check"
 
-[node name="Sprite2D" type="Sprite2D" parent="MainUI/ActionButtons/MarginContainer/HBoxContainer/ChechButton"]
+[node name="Sprite2D" type="Sprite2D" parent="MainUI/ActionMenu/MarginContainer/ActionButtons/ChechButton"]
 position = Vector2(44.9248, 28.9014)
 scale = Vector2(0.449792, 0.434215)
 texture = ExtResource("3_a0l43")
+
+[node name="WaitingLabel" type="Label" parent="MainUI/ActionMenu/MarginContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("6_ydu3b")
+theme_override_font_sizes/font_size = 36
+text = "Wait for your turn..."
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Bet" type="Node2D" parent="MainUI"]
 
@@ -158,25 +296,136 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("6_ydu3b")
 theme_override_font_sizes/font_size = 70
-text = "1"
+text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="MainBetDice" parent="MainUI/Bet" instance=ExtResource("7_fae05")]
 position = Vector2(204, 331)
 
-[node name="RaseInput" type="Control" parent="MainUI"]
+[node name="RaiseInput" type="Control" parent="MainUI"]
+z_index = 5
 layout_mode = 3
 anchors_preset = 14
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_top = 90.0
-offset_bottom = 268.0
+offset_top = 367.0
+offset_bottom = 545.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="BG" type="MarginContainer" parent="MainUI/RaiseInput"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 1.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 15
+
+[node name="Panel" type="Panel" parent="MainUI/RaiseInput/BG"]
+z_index = -1
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_8kstu")
+
+[node name="DiceNumberSlider" type="HSlider" parent="MainUI/RaiseInput"]
+layout_mode = 2
+offset_left = 71.0
+offset_top = 81.0
+offset_right = 362.0
+offset_bottom = 97.0
+max_value = 10.0
+tick_count = 10
+
+[node name="DiceNumberSliderLabel" type="Label" parent="MainUI/RaiseInput"]
+layout_mode = 0
+offset_left = 34.0
+offset_top = 67.0
+offset_right = 71.0
+offset_bottom = 109.0
+theme_override_fonts/font = ExtResource("6_ydu3b")
+theme_override_font_sizes/font_size = 30
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DiceToRaiseOrderButtons" type="Control" parent="MainUI/RaiseInput" node_paths=PackedStringArray("dice_button_1", "dice_button_2", "dice_button_3", "dice_button_4", "dice_button_5", "dice_button_6")]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 30.0
+offset_top = 21.0
+offset_right = 375.0
+offset_bottom = 21.0
+script = ExtResource("7_yedju")
+dice_button_1 = NodePath("Dices/DiceButton1")
+dice_button_2 = NodePath("Dices/DiceButton2")
+dice_button_3 = NodePath("Dices/DiceButton3")
+dice_button_4 = NodePath("Dices/DiceButton4")
+dice_button_5 = NodePath("Dices/DiceButton5")
+dice_button_6 = NodePath("Dices/DiceButton6")
+
+[node name="Dices" type="HBoxContainer" parent="MainUI/RaiseInput/DiceToRaiseOrderButtons"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = -5.0
+offset_right = 807.0
+offset_bottom = 112.0
+scale = Vector2(0.4, 0.4)
+theme_override_constants/separation = 18
+
+[node name="DiceButton1" type="Button" parent="MainUI/RaiseInput/DiceToRaiseOrderButtons/Dices"]
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_g26sw")
+icon = ExtResource("8_ocg3n")
+flat = true
+
+[node name="DiceButton2" type="Button" parent="MainUI/RaiseInput/DiceToRaiseOrderButtons/Dices"]
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_aj17q")
+icon = ExtResource("9_uegii")
+flat = true
+
+[node name="DiceButton3" type="Button" parent="MainUI/RaiseInput/DiceToRaiseOrderButtons/Dices"]
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_avr1c")
+icon = ExtResource("10_xn3fg")
+flat = true
+
+[node name="DiceButton4" type="Button" parent="MainUI/RaiseInput/DiceToRaiseOrderButtons/Dices"]
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_vuaij")
+icon = ExtResource("11_6ooil")
+flat = true
+
+[node name="DiceButton5" type="Button" parent="MainUI/RaiseInput/DiceToRaiseOrderButtons/Dices"]
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_h2uay")
+icon = ExtResource("12_0d6yt")
+flat = true
+
+[node name="DiceButton6" type="Button" parent="MainUI/RaiseInput/DiceToRaiseOrderButtons/Dices"]
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_a6vmq")
+icon = ExtResource("13_yargo")
+flat = true
+
+[node name="RaiseButton" type="Button" parent="MainUI/RaiseInput"]
+layout_mode = 0
+offset_left = 42.0
+offset_top = 117.0
+offset_right = 364.0
+offset_bottom = 168.0
+theme = SubResource("Theme_a2h8k")
+theme_override_font_sizes/font_size = 22
+text = "Raise"
+
 [node name="Dices" type="Node2D" parent="MainUI"]
+z_index = 2
 
 [node name="Dice1" parent="MainUI/Dices" instance=ExtResource("7_fae05")]
 position = Vector2(172, 525)
@@ -195,5 +444,17 @@ position = Vector2(260, 580)
 
 [node name="Players" type="Node2D" parent="."]
 
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
-replication_config = SubResource("SceneReplicationConfig_fhjrw")
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_qd5l5")
+}
+
+[connection signal="pressed" from="MainUI/ActionMenu/MarginContainer/ActionButtons/RaiseMenuButton" to="." method="_on_raise_menu_button_pressed"]
+[connection signal="value_changed" from="MainUI/RaiseInput/DiceNumberSlider" to="." method="_on_dice_number_slider_value_changed"]
+[connection signal="pressed" from="MainUI/RaiseInput/DiceToRaiseOrderButtons/Dices/DiceButton1" to="MainUI/RaiseInput/DiceToRaiseOrderButtons" method="_on_dice_button_1_pressed"]
+[connection signal="pressed" from="MainUI/RaiseInput/DiceToRaiseOrderButtons/Dices/DiceButton2" to="MainUI/RaiseInput/DiceToRaiseOrderButtons" method="_on_dice_button_2_pressed"]
+[connection signal="pressed" from="MainUI/RaiseInput/DiceToRaiseOrderButtons/Dices/DiceButton3" to="MainUI/RaiseInput/DiceToRaiseOrderButtons" method="_on_dice_button_3_pressed"]
+[connection signal="pressed" from="MainUI/RaiseInput/DiceToRaiseOrderButtons/Dices/DiceButton4" to="MainUI/RaiseInput/DiceToRaiseOrderButtons" method="_on_dice_button_4_pressed"]
+[connection signal="pressed" from="MainUI/RaiseInput/DiceToRaiseOrderButtons/Dices/DiceButton5" to="MainUI/RaiseInput/DiceToRaiseOrderButtons" method="_on_dice_button_5_pressed"]
+[connection signal="pressed" from="MainUI/RaiseInput/DiceToRaiseOrderButtons/Dices/DiceButton6" to="MainUI/RaiseInput/DiceToRaiseOrderButtons" method="_on_dice_button_6_pressed"]
+[connection signal="pressed" from="MainUI/RaiseInput/RaiseButton" to="." method="_on_raise_button_pressed"]
