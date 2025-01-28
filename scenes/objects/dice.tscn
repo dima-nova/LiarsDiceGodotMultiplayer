@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://dydmqou3x7ray" path="res://assets/Dices/Dice_3.png" id="5_whwrd"]
 [ext_resource type="Texture2D" uid="uid://dmtd28l7uac3e" path="res://assets/Dices/Dice_2.png" id="6_exjtk"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_ysuvo"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_k7boj"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -64,14 +64,14 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:rotation")
+tracks/0/path = NodePath("AnimatedSprite2D:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.0]
+"values": [-6.28319]
 }
 
 [sub_resource type="Animation" id="Animation_3jank"]
@@ -79,7 +79,7 @@ resource_name = "roll"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:rotation")
+tracks/0/path = NodePath("AnimatedSprite2D:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -95,7 +95,7 @@ length = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:rotation")
+tracks/0/path = NodePath("AnimatedSprite2D:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -112,14 +112,27 @@ _data = {
 "update_roll": SubResource("Animation_evonx")
 }
 
-[node name="Dice" type="Node2D" node_paths=PackedStringArray("animated_sprite", "animation_player")]
+[node name="Dice" type="Control" node_paths=PackedStringArray("animated_sprite", "animation_player")]
+custom_minimum_size = Vector2(44, 44)
+layout_direction = 1
+layout_mode = 3
+anchors_preset = 0
+offset_left = -22.0
+offset_top = -22.0
+offset_right = 22.0
+offset_bottom = 22.0
+rotation = -6.28319
+size_flags_horizontal = 4
+mouse_filter = 2
 script = ExtResource("1_h1ljn")
 animated_sprite = NodePath("AnimatedSprite2D")
 animation_player = NodePath("AnimationPlayer")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(21.9999, 22.0001)
+rotation = -6.28319
 scale = Vector2(0.4, 0.4)
-sprite_frames = SubResource("SpriteFrames_ysuvo")
+sprite_frames = SubResource("SpriteFrames_k7boj")
 animation = &"1"
 autoplay = "1"
 frame_progress = 1.0

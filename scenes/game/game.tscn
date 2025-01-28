@@ -125,14 +125,14 @@ _data = {
 "your_turn": SubResource("Animation_2ud3a")
 }
 
-[node name="Game" type="Node2D" node_paths=PackedStringArray("spawn_point", "players_list", "main_bet_dice", "main_bet_value_label", "dices_list", "animation_player", "raise_menu_button", "action_buttons", "waiting_label", "dice_number_slider", "dice_number_slider_label", "dice_face_value_order", "raise_input_menu")]
+[node name="Game" type="Node2D" node_paths=PackedStringArray("spawn_point", "players_list", "main_bet_dice", "main_bet_value_label", "animation_player", "raise_menu_button", "action_buttons", "waiting_label", "dice_number_slider", "dice_number_slider_label", "dice_face_value_order", "raise_input_menu", "dice_layer_1", "dice_layer_2")]
 script = ExtResource("1_ccd8n")
 player_game_card = ExtResource("1_1qpfq")
+dice_card = ExtResource("7_fae05")
 spawn_point = NodePath("PlayersPath/SpawnPoint")
 players_list = NodePath("Players")
 main_bet_dice = NodePath("MainUI/Bet/MainBetDice")
 main_bet_value_label = NodePath("MainUI/Bet/MainBetDiceNumber")
-dices_list = NodePath("MainUI/Dices")
 animation_player = NodePath("AnimationPlayer")
 raise_menu_button = NodePath("MainUI/ActionMenu/MarginContainer/ActionButtons/RaiseMenuButton")
 action_buttons = NodePath("MainUI/ActionMenu/MarginContainer/ActionButtons")
@@ -141,6 +141,8 @@ dice_number_slider = NodePath("MainUI/RaiseInput/DiceNumberSlider")
 dice_number_slider_label = NodePath("MainUI/RaiseInput/DiceNumberSliderLabel")
 dice_face_value_order = NodePath("MainUI/RaiseInput/DiceToRaiseOrderButtons")
 raise_input_menu = NodePath("MainUI/RaiseInput")
+dice_layer_1 = NodePath("MainUI/Dices/VBoxContainer/DiceLayer1")
+dice_layer_2 = NodePath("MainUI/Dices/VBoxContainer/DiceLayer2")
 
 [node name="BG" type="CanvasLayer" parent="."]
 layer = -5
@@ -280,7 +282,10 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="MainBetDice" parent="MainUI/Bet" instance=ExtResource("7_fae05")]
-position = Vector2(204, 331)
+offset_left = 180.0
+offset_top = 309.0
+offset_right = 224.0
+offset_bottom = 353.0
 
 [node name="RaiseInput" type="Control" parent="MainUI"]
 visible = false
@@ -404,23 +409,34 @@ theme = ExtResource("3_1o5fy")
 theme_override_font_sizes/font_size = 22
 text = "Raise"
 
-[node name="Dices" type="Node2D" parent="MainUI"]
-z_index = 2
+[node name="Dices" type="MarginContainer" parent="MainUI"]
+z_index = -1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = 144.0
+offset_bottom = 267.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 
-[node name="Dice1" parent="MainUI/Dices" instance=ExtResource("7_fae05")]
-position = Vector2(172, 525)
+[node name="VBoxContainer" type="VBoxContainer" parent="MainUI/Dices"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 10
 
-[node name="Dice2" parent="MainUI/Dices" instance=ExtResource("7_fae05")]
-position = Vector2(232, 525)
+[node name="DiceLayer2" type="HBoxContainer" parent="MainUI/Dices/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 16
+alignment = 1
 
-[node name="Dice3" parent="MainUI/Dices" instance=ExtResource("7_fae05")]
-position = Vector2(144, 580)
-
-[node name="Dice4" parent="MainUI/Dices" instance=ExtResource("7_fae05")]
-position = Vector2(202, 580)
-
-[node name="Dice5" parent="MainUI/Dices" instance=ExtResource("7_fae05")]
-position = Vector2(260, 580)
+[node name="DiceLayer1" type="HBoxContainer" parent="MainUI/Dices/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 16
+alignment = 1
 
 [node name="Players" type="Node2D" parent="."]
 

@@ -1,4 +1,4 @@
-extends Node2D
+extends Control
 
 @export var animated_sprite: AnimatedSprite2D
 @export var animation_player: AnimationPlayer

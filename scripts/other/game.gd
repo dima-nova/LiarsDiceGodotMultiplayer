@@ -1,12 +1,14 @@
 extends Node2D
 
-@export_group("UI")
+@export_group("PackedScenes")
 @export var player_game_card: PackedScene
+@export var dice_card: PackedScene
+
+@export_group("UI")
 @export var spawn_point: PathFollow2D
 @export var players_list: Node2D
-@export var main_bet_dice: Node2D
+@export var main_bet_dice: Control
 @export var main_bet_value_label: Label
-@export var dices_list: Node2D
 @export var animation_player: AnimationPlayer
 @export var raise_menu_button: Button
 @export var action_buttons: HBoxContainer
@@ -15,6 +17,8 @@ extends Node2D
 @export var dice_number_slider_label: Label
 @export var dice_face_value_order: Control
 @export var raise_input_menu: Control
+@export var dice_layer_1: HBoxContainer
+@export var dice_layer_2: HBoxContainer
 
 var players: Dictionary
 var spawn_step: float
@@ -58,10 +62,23 @@ func update_bet():
 	
 	
 func update_dices():
-	var player_dices = PlayersSpawner.get_node(str(multiplayer.get_unique_id())).dices
-	for dice_i in dices_list.get_child_count():
-		dices_list.get_child(dice_i).roll()
-		dices_list.get_child(dice_i).set_dice_value(player_dices[dice_i])
+	var player_dices: Array = PlayersSpawner.get_node(str(multiplayer.get_unique_id())).dices
+	for dice_i in player_dices.size():
+		print("Error is there!!!")
+		if dice_layer_1.get_child_count() <= dice_layer_2.get_child_count() + 1 \
+		 and dice_layer_2.get_child_count() == 0 or dice_layer_1.get_child_count() == dice_layer_2.get_child_count():
+			var new_dice = dice_card.instantiate()
+			dice_layer_1.add_child(new_dice)
+			new_dice.roll()
+			new_dice.set_dice_value(player_dices[dice_i])
+		else:
+			var new_dice = dice_card.instantiate()
+			dice_layer_2.add_child(new_dice)
+			new_dice.roll()
+			new_dice.set_dice_value(player_dices[dice_i])
+		#
+		#dices_list.get_child(dice_i).roll()
+		#dices_list.get_child(dice_i).set_dice_value(player_dices[dice_i])
 		
 
 func make_turn_possibility():
