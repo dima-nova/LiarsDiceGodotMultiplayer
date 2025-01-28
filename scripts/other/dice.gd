@@ -15,3 +15,6 @@ func set_dice_value(number: int):
 func roll():
 	animation_player.play("roll")
 	
+func update_roll():
+	animation_player.play("update_roll")
+	

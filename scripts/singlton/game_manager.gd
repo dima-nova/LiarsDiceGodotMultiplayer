@@ -47,9 +47,7 @@ func send_game_state(current_player_id_: int, current_bet_number_: int, current_
 func start_round():
 	# Rolling dices
 	for player: Player in PlayersSpawner.get_children():
-		var res = player.roll_dices()
-		print(res)
-		print(PlayersSpawner.get_node(str(player.player_id)).dices)
+		player.roll_dices()
 		
 	# Updating ui
 	update_dices_ui.rpc()

@@ -25,8 +25,6 @@ func roll_dices():
 		random.randomize()
 		var face_value = random.randi_range(1, 6)
 		dices.append(face_value)
-		
-	print("One player done")
 
 
 func _process(delta: float) -> void:

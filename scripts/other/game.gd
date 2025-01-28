@@ -43,8 +43,10 @@ func _ready() -> void:
 
 	
 func update_bet():
+	main_bet_dice.update_roll()
 	main_bet_dice.set_dice_value(GameManager.current_face_value)
 	main_bet_value_label.text = str(GameManager.current_bet_number)
+	
 	
 	dice_number_slider.min_value = GameManager.current_bet_number
 	dice_number_slider.value = dice_number_slider.min_value
@@ -53,7 +55,6 @@ func update_bet():
 	dice_number_slider_label.text = str(dice_number_slider.min_value)
 	
 	dice_face_value_order.ordered_value = GameManager.current_face_value
-	print(dice_face_value_order.ordered_value)
 	
 	
 func update_dices():
@@ -69,8 +70,12 @@ func make_turn_possibility():
 		action_buttons.visible = true
 		raise_input_menu.visible = true
 	else:
+		if raise_input_menu.visible:
+			print("There!")
+			animation_player.play_backwards("raise_menu_open")
+			print(raise_input_menu.visible)
+			_on_raise_menu_button_pressed()
 		action_buttons.hide()
-		raise_input_menu.hide()
 		waiting_label.visible = true
 			
 
@@ -121,3 +126,7 @@ func _on_raise_button_pressed() -> void:
 	var dice_number = dice_number_slider.value
 	
 	GameManager.raise_bet.rpc_id(1, multiplayer.get_unique_id(), face_value, dice_number)
+
+
+func _on_chech_button_pressed() -> void:
+	print("You are cheching last bet")

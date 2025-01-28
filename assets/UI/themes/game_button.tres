@@ -1,0 +1,59 @@
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://baf0i3541y13e"]
+
+[ext_resource type="FontFile" uid="uid://crl5ijiieuwbe" path="res://assets/UI/fonts/Nunito-SemiBold.ttf" id="1_uk442"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aknbx"]
+content_margin_top = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(2.40654e-07, 0.226991, 0.229702, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.633757, 0.633757, 0.633757, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dy2cu"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ihcpt"]
+content_margin_top = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.00392157, 0.427451, 0.384314, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ahoc8"]
+content_margin_top = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0, 0.352941, 0.356863, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[resource]
+Button/colors/font_color = Color(1, 1, 1, 1)
+Button/colors/font_focus_color = Color(1, 1, 1, 1)
+Button/font_sizes/font_size = 26
+Button/fonts/font = ExtResource("1_uk442")
+Button/styles/disabled = SubResource("StyleBoxFlat_aknbx")
+Button/styles/focus = SubResource("StyleBoxEmpty_dy2cu")
+Button/styles/hover = SubResource("StyleBoxFlat_ihcpt")
+Button/styles/hover_pressed = SubResource("StyleBoxFlat_ihcpt")
+Button/styles/normal = SubResource("StyleBoxFlat_ahoc8")
+Button/styles/pressed = SubResource("StyleBoxFlat_ahoc8")
