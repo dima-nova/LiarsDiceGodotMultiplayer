@@ -48,7 +48,6 @@ func add_player(id: int) -> void:
 		var new_player: Player = player_instance.instantiate()
 		new_player.player_id = id
 		new_player.name = str(id)
-		#new_player.player_is_ready.connect(GameManager.player_is_ready)
 	
 		PlayersSpawner.add_child(new_player)
 		print("Player added with id: " + str(id))

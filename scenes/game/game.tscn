@@ -245,21 +245,6 @@ tracks/2/keys = {
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_khxip"]
-resource_name = "true_bet"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("MainUI/CheckBet:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.7),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(0.418746, 0.921353, 0.640986, 1)]
-}
-
 [sub_resource type="Animation" id="Animation_cy8ha"]
 resource_name = "false_bet"
 tracks/0/type = "value"
@@ -275,6 +260,21 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 1), Color(0.957484, 0.496255, 0.557403, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_khxip"]
+resource_name = "true_bet"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MainUI/CheckBet:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.418746, 0.921353, 0.640986, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_qd5l5"]
 _data = {
 "RESET": SubResource("Animation_88pmr"),
@@ -282,34 +282,6 @@ _data = {
 "check_bet_start": SubResource("Animation_0wv1p"),
 "false_bet": SubResource("Animation_cy8ha"),
 "true_bet": SubResource("Animation_khxip")
-}
-
-[sub_resource type="Animation" id="Animation_oryty"]
-resource_name = "raise_menu_open"
-length = 0.6
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("MainUI/RaiseInput:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(0, 727), Vector2(0, 522), Vector2(0, 442)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("MainUI/RaiseInput:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.0333333),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, true]
 }
 
 [sub_resource type="Animation" id="Animation_5kjd2"]
@@ -337,6 +309,34 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_oryty"]
+resource_name = "raise_menu_open"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MainUI/RaiseInput:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 727), Vector2(0, 522), Vector2(0, 442)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MainUI/RaiseInput:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vl3t1"]

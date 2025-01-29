@@ -102,9 +102,9 @@ func check_last_bet(player_id: int):
 		if player_id == PlayersSpawner.get_child(current_player_id).player_id:
 			if current_bet_number <= get_number_of_dices_by_face(current_face_value):
 				PlayersSpawner.get_child(current_player_id).dices_number -= 1
-				
 			else:
 				PlayersSpawner.get_child(previous_player_id).dices_number -= 1
+				current_player_id = previous_player_id
 				
 			finish_round()
 			

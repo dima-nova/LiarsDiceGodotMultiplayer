@@ -52,15 +52,6 @@ func _ready() -> void:
 	check_bet_animation_player.play("RESET")
 	
 	GameManager.add_ready_player.rpc_id(1)
-	
-	## Updating start bet
-	#update_bet()
-	#
-	## Updating dices
-	#update_dices()
-	#
-	## Making turn possible
-	#make_turn_possibility()
 
 	
 func update_bet():
@@ -106,7 +97,6 @@ func make_turn_possibility():
 	if PlayersSpawner.get_child(GameManager.current_player_id).player_id == multiplayer.get_unique_id():
 		waiting_label.hide()
 		action_buttons.visible = true
-		raise_input_menu.visible = true
 	else:
 		if raise_input_menu.visible:
 			menu_animation_player.play_backwards("raise_menu_open")
@@ -144,9 +134,7 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 				dice_layer_1.get_child(0).lose()
 				
 		check_bet_animation_player.play("RESET")
-		print_debug("reset started")
 		GameManager.add_ready_player.rpc_id(1)
-	print(anim_name)
 				
 
 func player_cards_generation():
