@@ -192,4 +192,7 @@ func _on_chech_button_pressed() -> void:
 		_on_raise_menu_button_pressed()
 	
 	GameManager.check_last_bet.rpc_id(1, multiplayer.get_unique_id())
+	
+	#for player in PlayersSpawner.get_children():
+		#player.is_move = false
 	print("You are cheching last bet")

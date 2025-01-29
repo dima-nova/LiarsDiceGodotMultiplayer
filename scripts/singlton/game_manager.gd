@@ -89,6 +89,7 @@ func raise_bet(player_id, face_value, dice_number):
 					current_bet_number = dice_number
 					take_next_player()
 			
+					await get_tree().process_frame
 					send_game_state.rpc(current_player_id, current_bet_number, current_face_value)
 					
 					
@@ -100,13 +101,15 @@ func finish_round():
 func check_last_bet(player_id: int):
 	if multiplayer.is_server():
 		if player_id == PlayersSpawner.get_child(current_player_id).player_id:
+			finish_round()
+			
 			if current_bet_number <= get_number_of_dices_by_face(current_face_value):
 				PlayersSpawner.get_child(current_player_id).dices_number -= 1
+				current_player_id = current_player_id
 			else:
 				PlayersSpawner.get_child(previous_player_id).dices_number -= 1
 				current_player_id = previous_player_id
-				
-			finish_round()
+
 			
 			await get_tree().process_frame
 			finish_round_ui.rpc(get_number_of_dices_by_face(current_face_value))
