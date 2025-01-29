@@ -18,3 +18,6 @@ func roll():
 func update_roll():
 	animation_player.play("update_roll")
 	
+	
+func lose():
+	animation_player.play("lose")

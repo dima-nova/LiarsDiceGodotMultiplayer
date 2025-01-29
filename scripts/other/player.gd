@@ -12,7 +12,7 @@ signal info_update
 		dices_number = value
 		info_update.emit()
 @export var dices: Array[int]
-@export var is_move: bool
+@export var is_move: bool = false
 
 
 func _ready() -> void:
@@ -25,7 +25,3 @@ func roll_dices():
 		random.randomize()
 		var face_value = random.randi_range(1, 6)
 		dices.append(face_value)
-
-
-func _process(delta: float) -> void:
-	pass

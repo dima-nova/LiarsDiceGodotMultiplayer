@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://bydo21oj4y82x"]
+[gd_scene load_steps=34 format=3 uid="uid://bydo21oj4y82x"]
 
 [ext_resource type="PackedScene" uid="uid://m1y2a7jnwaur" path="res://scenes/objects/player_game_card.tscn" id="1_1qpfq"]
 [ext_resource type="Script" path="res://scripts/other/game.gd" id="1_ccd8n"]
@@ -8,7 +8,7 @@
 [ext_resource type="FontFile" uid="uid://crl5ijiieuwbe" path="res://assets/UI/fonts/Nunito-SemiBold.ttf" id="6_ydu3b"]
 [ext_resource type="PackedScene" uid="uid://du14jegpuod1q" path="res://scenes/objects/dice.tscn" id="7_fae05"]
 [ext_resource type="Script" path="res://scenes/game/dice_to_raise_order_controller.gd" id="7_yedju"]
-[ext_resource type="Texture2D" uid="uid://dletwho322gqw" path="res://assets/Dices/Dice_1.png" id="8_ocg3n"]
+[ext_resource type="Texture2D" uid="uid://syys5tsascvm" path="res://assets/Dices/Dice_1.png" id="8_ocg3n"]
 [ext_resource type="Texture2D" uid="uid://dmtd28l7uac3e" path="res://assets/Dices/Dice_2.png" id="9_uegii"]
 [ext_resource type="Texture2D" uid="uid://dydmqou3x7ray" path="res://assets/Dices/Dice_3.png" id="10_xn3fg"]
 [ext_resource type="Texture2D" uid="uid://mbpokh3v4qjo" path="res://assets/Dices/Dice_4.png" id="11_6ooil"]
@@ -46,6 +46,13 @@ corner_radius_bottom_left = 16
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h2uay"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_a6vmq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7250g"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
 
 [sub_resource type="Animation" id="Animation_88pmr"]
 length = 0.001
@@ -85,47 +92,260 @@ tracks/2/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MainUI/Bet:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("MainUI/CheckBet:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("MainUI/CheckBet:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("MainUI/CheckBet:scale")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("MainUI/CheckBet:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-38, 0)]
+}
 
-[sub_resource type="Animation" id="Animation_pvvqy"]
+[sub_resource type="Animation" id="Animation_c7iyh"]
+resource_name = "check_bet_plus"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MainUI/CheckBet:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MainUI/CheckBet:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MainUI/CheckBet:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.09, 1.09), Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MainUI/CheckBet:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-38, 0), Vector2(-55, -30), Vector2(-38, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_0wv1p"]
+resource_name = "check_bet_start"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MainUI/Bet:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(38, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MainUI/CheckBet:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.5, 0.633333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MainUI/CheckBet:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.5, 1.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_khxip"]
+resource_name = "true_bet"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MainUI/CheckBet:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.418746, 0.921353, 0.640986, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_cy8ha"]
+resource_name = "false_bet"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MainUI/CheckBet:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.957484, 0.496255, 0.557403, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qd5l5"]
+_data = {
+"RESET": SubResource("Animation_88pmr"),
+"check_bet_plus": SubResource("Animation_c7iyh"),
+"check_bet_start": SubResource("Animation_0wv1p"),
+"false_bet": SubResource("Animation_cy8ha"),
+"true_bet": SubResource("Animation_khxip")
+}
+
+[sub_resource type="Animation" id="Animation_oryty"]
 resource_name = "raise_menu_open"
 length = 0.6
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("MainUI/RaiseInput:visible")
+tracks/0/path = NodePath("MainUI/RaiseInput:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0333333),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, true]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("MainUI/RaiseInput:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.4, 0.6),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector2(0, 727), Vector2(0, 522), Vector2(0, 442)]
 }
-
-[sub_resource type="Animation" id="Animation_2ud3a"]
-resource_name = "your_turn"
-length = 0.3
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_qd5l5"]
-_data = {
-"RESET": SubResource("Animation_88pmr"),
-"raise_menu_open": SubResource("Animation_pvvqy"),
-"your_turn": SubResource("Animation_2ud3a")
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MainUI/RaiseInput:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
 }
 
-[node name="Game" type="Node2D" node_paths=PackedStringArray("spawn_point", "players_list", "main_bet_dice", "main_bet_value_label", "animation_player", "raise_menu_button", "action_buttons", "waiting_label", "dice_number_slider", "dice_number_slider_label", "dice_face_value_order", "raise_input_menu", "dice_layer_1", "dice_layer_2")]
+[sub_resource type="Animation" id="Animation_5kjd2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MainUI/RaiseInput:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 727)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MainUI/RaiseInput:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vl3t1"]
+_data = {
+"RESET": SubResource("Animation_5kjd2"),
+"raise_menu_open": SubResource("Animation_oryty")
+}
+
+[node name="Game" type="Node2D" node_paths=PackedStringArray("spawn_point", "players_list", "main_bet_dice", "main_bet_value_label", "check_bet_dice", "check_bet_value_label", "check_bet_animation_player", "menu_animation_player", "raise_menu_button", "action_buttons", "waiting_label", "dice_number_slider", "dice_number_slider_label", "dice_face_value_order", "raise_input_menu", "dice_layer_1", "dice_layer_2")]
 script = ExtResource("1_ccd8n")
 player_game_card = ExtResource("1_1qpfq")
 dice_card = ExtResource("7_fae05")
@@ -133,7 +353,10 @@ spawn_point = NodePath("PlayersPath/SpawnPoint")
 players_list = NodePath("Players")
 main_bet_dice = NodePath("MainUI/Bet/MainBetDice")
 main_bet_value_label = NodePath("MainUI/Bet/MainBetDiceNumber")
-animation_player = NodePath("AnimationPlayer")
+check_bet_dice = NodePath("MainUI/CheckBet/CheckBetDice")
+check_bet_value_label = NodePath("MainUI/CheckBet/CheckBetDiceNumber")
+check_bet_animation_player = NodePath("CheckBetAnimationPlayer")
+menu_animation_player = NodePath("MenuAnimationPlayer")
 raise_menu_button = NodePath("MainUI/ActionMenu/MarginContainer/ActionButtons/RaiseMenuButton")
 action_buttons = NodePath("MainUI/ActionMenu/MarginContainer/ActionButtons")
 waiting_label = NodePath("MainUI/ActionMenu/MarginContainer/WaitingLabel")
@@ -438,11 +661,53 @@ mouse_filter = 2
 theme_override_constants/separation = 16
 alignment = 1
 
+[node name="CheckBet" type="Node2D" parent="MainUI"]
+visible = false
+modulate = Color(1, 1, 1, 0)
+position = Vector2(-38, 0)
+
+[node name="CheckBetDiceNumber" type="Label" parent="MainUI/CheckBet"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 160.0
+offset_top = 225.0
+offset_right = 244.0
+offset_bottom = 321.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("6_ydu3b")
+theme_override_font_sizes/font_size = 70
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckBetDice" parent="MainUI/CheckBet" instance=ExtResource("7_fae05")]
+offset_left = 180.0
+offset_top = 309.0
+offset_right = 224.0
+offset_bottom = 353.0
+
+[node name="DicreaseLine" type="Panel" parent="MainUI/CheckBet"]
+offset_left = 248.0
+offset_top = 230.0
+offset_right = 256.0
+offset_bottom = 360.0
+rotation = 0.144057
+theme_override_styles/panel = SubResource("StyleBoxFlat_7250g")
+
 [node name="Players" type="Node2D" parent="."]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="CheckBetAnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_qd5l5")
+}
+
+[node name="MenuAnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_vl3t1")
 }
 
 [connection signal="pressed" from="MainUI/ActionMenu/MarginContainer/ActionButtons/RaiseMenuButton" to="." method="_on_raise_menu_button_pressed"]
@@ -455,3 +720,4 @@ libraries = {
 [connection signal="pressed" from="MainUI/RaiseInput/DiceToRaiseOrderButtons/Dices/DiceButton5" to="MainUI/RaiseInput/DiceToRaiseOrderButtons" method="_on_dice_button_5_pressed"]
 [connection signal="pressed" from="MainUI/RaiseInput/DiceToRaiseOrderButtons/Dices/DiceButton6" to="MainUI/RaiseInput/DiceToRaiseOrderButtons" method="_on_dice_button_6_pressed"]
 [connection signal="pressed" from="MainUI/RaiseInput/RaiseButton" to="." method="_on_raise_button_pressed"]
+[connection signal="animation_finished" from="CheckBetAnimationPlayer" to="." method="_on_animation_player_animation_finished"]

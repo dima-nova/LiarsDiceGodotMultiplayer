@@ -7,9 +7,15 @@ extends Node2D
 @export_group("UI")
 @export var spawn_point: PathFollow2D
 @export var players_list: Node2D
+
 @export var main_bet_dice: Control
 @export var main_bet_value_label: Label
-@export var animation_player: AnimationPlayer
+@export var check_bet_dice: Control
+@export var check_bet_value_label: Label
+
+@export var check_bet_animation_player: AnimationPlayer
+@export var menu_animation_player: AnimationPlayer
+
 @export var raise_menu_button: Button
 @export var action_buttons: HBoxContainer
 @export var waiting_label: Label
@@ -22,6 +28,12 @@ extends Node2D
 
 var players: Dictionary
 var spawn_step: float
+var check_bet_plus_times_to_play: int
+
+var check_bet_start_anim_name = "check_bet_start"
+var check_bet_plus_anim_name = "check_bet_plus"
+var true_bet_anim_name = "true_bet"
+var false_bet_anim_name = "false_bet"
 		
 
 
@@ -30,20 +42,25 @@ func _ready() -> void:
 	GameManager.bet_update.connect(update_bet)
 	GameManager.round_starting.connect(update_dices)
 	GameManager.next_turn.connect(make_turn_possibility)
+	GameManager.round_finishing.connect(finish_round)
 	
 	# Spawn player cards
 	spawn_point.progress_ratio = 0.0
 	spawn_step = 1.0 / PlayersSpawner.get_child_count()
 	player_cards_generation()
 	
-	# Updating start bet
-	update_bet()
+	check_bet_animation_player.play("RESET")
 	
-	# Updating dices
-	update_dices()
+	GameManager.add_ready_player.rpc_id(1)
 	
-	# Making turn possible
-	make_turn_possibility()
+	## Updating start bet
+	#update_bet()
+	#
+	## Updating dices
+	#update_dices()
+	#
+	## Making turn possible
+	#make_turn_possibility()
 
 	
 func update_bet():
@@ -63,8 +80,8 @@ func update_bet():
 	
 func update_dices():
 	var player_dices: Array = PlayersSpawner.get_node(str(multiplayer.get_unique_id())).dices
+	clean_dice_list()
 	for dice_i in player_dices.size():
-		print("Error is there!!!")
 		if dice_layer_1.get_child_count() <= dice_layer_2.get_child_count() + 1 \
 		 and dice_layer_2.get_child_count() == 0 or dice_layer_1.get_child_count() == dice_layer_2.get_child_count():
 			var new_dice = dice_card.instantiate()
@@ -76,10 +93,14 @@ func update_dices():
 			dice_layer_2.add_child(new_dice)
 			new_dice.roll()
 			new_dice.set_dice_value(player_dices[dice_i])
-		#
-		#dices_list.get_child(dice_i).roll()
-		#dices_list.get_child(dice_i).set_dice_value(player_dices[dice_i])
 		
+		
+func clean_dice_list():
+	for dice in dice_layer_1.get_children():
+		dice.free()
+	for dice in dice_layer_2.get_children():
+		dice.free()
+
 
 func make_turn_possibility():
 	if PlayersSpawner.get_child(GameManager.current_player_id).player_id == multiplayer.get_unique_id():
@@ -88,13 +109,45 @@ func make_turn_possibility():
 		raise_input_menu.visible = true
 	else:
 		if raise_input_menu.visible:
-			print("There!")
-			animation_player.play_backwards("raise_menu_open")
-			print(raise_input_menu.visible)
+			menu_animation_player.play_backwards("raise_menu_open")
 			_on_raise_menu_button_pressed()
 		action_buttons.hide()
 		waiting_label.visible = true
-			
+		
+
+func finish_round():
+	check_bet_dice.set_dice_value(GameManager.current_face_value)
+	check_bet_dice.update_roll()
+	check_bet_value_label.text = str(0)
+	check_bet_animation_player.play(check_bet_start_anim_name)
+	check_bet_plus_times_to_play = GameManager.real_number_of_dice
+	
+
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	if anim_name in [check_bet_start_anim_name, check_bet_plus_anim_name]:
+		if check_bet_plus_times_to_play > 0:
+			check_bet_plus_times_to_play -= 1
+			check_bet_value_label.text = str(check_bet_value_label.text.to_int() + 1)
+			check_bet_animation_player.play(check_bet_plus_anim_name)
+		else:
+			if GameManager.real_number_of_dice >= GameManager.current_bet_number:
+				check_bet_animation_player.play(true_bet_anim_name)
+			else:
+				check_bet_animation_player.play(false_bet_anim_name)
+				
+	elif anim_name in [true_bet_anim_name, false_bet_anim_name]:
+		var player_dices = PlayersSpawner.get_node(str(multiplayer.get_unique_id())).dices_number
+		if player_dices < dice_layer_1.get_child_count() + dice_layer_2.get_child_count():
+			if dice_layer_2.get_child(0):
+				dice_layer_2.get_child(0).lose()
+			elif dice_layer_1.get_child(0):
+				dice_layer_1.get_child(0).lose()
+				
+		check_bet_animation_player.play("RESET")
+		print_debug("reset started")
+		GameManager.add_ready_player.rpc_id(1)
+	print(anim_name)
+				
 
 func player_cards_generation():
 	"""This function generate players cards on the game field"""
@@ -128,10 +181,10 @@ func add_player_card(player_id):
 func _on_raise_menu_button_pressed() -> void:
 	if raise_menu_button.text == "   Raise":
 		raise_menu_button.text = "   Close"
-		animation_player.play("raise_menu_open")
+		menu_animation_player.play("raise_menu_open")
 	else:
 		raise_menu_button.text = "   Raise"
-		animation_player.play_backwards("raise_menu_open")
+		menu_animation_player.play_backwards("raise_menu_open")
 
 
 func _on_dice_number_slider_value_changed(value: float) -> void:
@@ -146,4 +199,9 @@ func _on_raise_button_pressed() -> void:
 
 
 func _on_chech_button_pressed() -> void:
+	if raise_input_menu.visible:
+		menu_animation_player.play_backwards("raise_menu_open")
+		_on_raise_menu_button_pressed()
+	
+	GameManager.check_last_bet.rpc_id(1, multiplayer.get_unique_id())
 	print("You are cheching last bet")
