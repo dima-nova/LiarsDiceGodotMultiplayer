@@ -79,6 +79,7 @@ func finish_round_ui(real_number_of_dice_: int):
 	round_finishing.emit()
 	print_debug("Round is finishing")
 
+
 @rpc("any_peer", "call_remote")
 func raise_bet(player_id, face_value, dice_number):
 	if multiplayer.is_server():
@@ -91,6 +92,7 @@ func raise_bet(player_id, face_value, dice_number):
 			
 					await get_tree().process_frame
 					send_game_state.rpc(current_player_id, current_bet_number, current_face_value)
+					
 					
 					
 func finish_round():
@@ -112,6 +114,7 @@ func check_last_bet(player_id: int):
 
 			
 			await get_tree().process_frame
+			send_game_state.rpc(current_player_id, current_bet_number, current_face_value)
 			finish_round_ui.rpc(get_number_of_dices_by_face(current_face_value))
 			
 		

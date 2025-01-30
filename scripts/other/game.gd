@@ -91,7 +91,7 @@ func clean_dice_list():
 		dice.free()
 	for dice in dice_layer_2.get_children():
 		dice.free()
-
+		
 
 func make_turn_possibility():
 	if PlayersSpawner.get_child(GameManager.current_player_id).player_id == multiplayer.get_unique_id():
@@ -132,9 +132,15 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 				dice_layer_2.get_child(0).lose()
 			elif dice_layer_1.get_child(0):
 				dice_layer_1.get_child(0).lose()
-				
-		check_bet_animation_player.play("RESET")
-		GameManager.add_ready_player.rpc_id(1)
+		
+		var player_card = players_list.get_node(str(PlayersSpawner.get_child(GameManager.current_player_id).player_id))
+		player_card.lose_dice_anim_finished.connect(player_card_lose_anim_finished)
+		player_card.lose_dice_anim()
+		
+func player_card_lose_anim_finished():
+	print_debug("Whaaat")
+	check_bet_animation_player.play("RESET")
+	GameManager.add_ready_player.rpc_id(1)
 				
 
 func player_cards_generation():
@@ -158,6 +164,7 @@ func add_player_card(player_id):
 
 	new_player_card.player_name = player.player_name
 	new_player_card.player_id = player.player_id
+	new_player_card.name = str(player.player_id)
 		
 	new_player_card.global_position = spawn_point.global_position
 	player.info_update.connect(new_player_card.player_info_update)

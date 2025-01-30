@@ -2,7 +2,7 @@ extends Node
 
 signal connected_to_server_signal
 
-const PORT = 8080
+const PORT = 9999
 #192.168.0.104
 const IP_ADRESS = "127.0.0.1"
 const MAX_PLAYERS = 1000
@@ -19,10 +19,11 @@ func _ready() -> void:
 		
 		
 func create_server() -> void:
+	print("Running server on: " + IP_ADRESS)
 	var server = ENetMultiplayerPeer.new()
 	var error = server.create_server(PORT, MAX_PLAYERS)
 	if error:
-		print("error: " + error)
+		print("error: " + str(error))
 	
 	multiplayer.multiplayer_peer = server
 	

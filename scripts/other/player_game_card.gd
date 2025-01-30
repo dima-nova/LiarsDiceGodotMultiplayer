@@ -1,10 +1,14 @@
 extends Node2D
 
+signal lose_dice_anim_finished
+
 @export_group("Nodes")
 @export var player_name_label: Label
 @export var main_panel: Panel
 @export var animation_player: AnimationPlayer
 @export var dices_number_label: Label
+
+var lose_dice_anim_name = "lose_dice"
 
 var player_name: String:
 	set(new_name):
@@ -15,19 +19,29 @@ var is_move: bool = false:
 	set(value):
 		if value:
 			animation_player.play("move")
-		else:
+		elif animation_player.current_animation != lose_dice_anim_name:
 			animation_player.play("RESET")
-var dices_number: int = 5:
-	set(value):
-		dices_number_label.text = str(value)
 			
+var dices_number: int = 5
 var player: Player
 
 
 func _ready() -> void:
 	player = PlayersSpawner.get_node(str(player_id))
 
-	
+
+func lose_dice_anim():
+	if animation_player.current_animation != lose_dice_anim_name:
+		animation_player.play("lose_dice")
+		
+func reduce_label_dice_number():
+	dices_number_label.text = str(dices_number)
+
 func player_info_update():
 	is_move = player.is_move
 	dices_number = player.dices_number
+
+
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	if anim_name == lose_dice_anim_name:
+		lose_dice_anim_finished.emit()

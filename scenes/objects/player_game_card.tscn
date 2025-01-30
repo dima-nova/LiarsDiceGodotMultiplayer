@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://m1y2a7jnwaur"]
+[gd_scene load_steps=11 format=3 uid="uid://m1y2a7jnwaur"]
 
 [ext_resource type="Script" path="res://scripts/other/player_game_card.gd" id="1_0ht1r"]
 [ext_resource type="FontFile" uid="uid://crl5ijiieuwbe" path="res://assets/UI/fonts/Nunito-SemiBold.ttf" id="2_noxj5"]
@@ -35,6 +35,18 @@ tracks/0/keys = {
 "update": 0,
 "values": [0.0]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("UI:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_v8hh4"]
 resource_name = "move"
@@ -52,9 +64,40 @@ tracks/0/keys = {
 "values": [30.0, 0.0]
 }
 
+[sub_resource type="Animation" id="Animation_m2dxt"]
+resource_name = "lose_dice"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UI:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.8, 1.1, 1.6, 1.9, 2.4, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.0745098), Color(1, 1, 1, 1), Color(1, 1, 1, 0.0745098), Color(1, 1, 1, 1), Color(1, 1, 1, 0.0745098), Color(1, 1, 1, 1), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.8),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"reduce_label_dice_number"
+}]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mlktn"]
 _data = {
 "RESET": SubResource("Animation_14saf"),
+"lose_dice": SubResource("Animation_m2dxt"),
 "move": SubResource("Animation_v8hh4")
 }
 
@@ -134,3 +177,5 @@ texture = ExtResource("3_xpqrn")
 libraries = {
 "": SubResource("AnimationLibrary_mlktn")
 }
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
