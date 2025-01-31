@@ -56,7 +56,8 @@ func add_player(id: int) -> void:
 		print("Game was already started")
 	
 func delete_player(id: int) -> void:
-	PlayersSpawner.get_node(str(id)).queue_free()
+	if PlayersSpawner.get_node(str(id)):
+		PlayersSpawner.get_node(str(id)).queue_free()
 	print("Player deleted with id: " + str(id))
 	
 func connected_to_server() -> void:

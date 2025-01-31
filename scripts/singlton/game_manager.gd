@@ -43,6 +43,8 @@ func send_game_state(current_player_id_: int, current_bet_number_: int, current_
 
 func start_round():
 	if multiplayer.is_server():
+		check_dropped_out_players()
+		
 		PlayersSpawner.get_child(current_player_id).is_move = true
 		
 		previous_player_id = 0
@@ -58,6 +60,17 @@ func start_round():
 		send_game_state.rpc(current_player_id, current_bet_number, current_face_value)
 		update_dices_ui.rpc()
 	
+	
+func check_dropped_out_players():
+	if multiplayer.is_server():
+		for player: Player in PlayersSpawner.get_children():
+			if player.dices_number <= 0:
+				if player.get_index() == current_player_id:
+					player.free()
+					take_next_player()
+				else:
+					player.free()
+					print("Player deleted from game")
 	
 @rpc("any_peer", "call_remote")
 func add_ready_player():
@@ -77,7 +90,6 @@ func update_dices_ui():
 func finish_round_ui(real_number_of_dice_: int):
 	self.real_number_of_dice = real_number_of_dice_
 	round_finishing.emit()
-	print_debug("Round is finishing")
 
 
 @rpc("any_peer", "call_remote")
@@ -88,7 +100,10 @@ func raise_bet(player_id, face_value, dice_number):
 				if face_value > current_face_value or dice_number > current_bet_number:
 					current_face_value = face_value
 					current_bet_number = dice_number
+					
+					PlayersSpawner.get_child(current_player_id).is_move = false
 					take_next_player()
+					PlayersSpawner.get_child(current_player_id).is_move = true
 			
 					await get_tree().process_frame
 					send_game_state.rpc(current_player_id, current_bet_number, current_face_value)
@@ -112,7 +127,6 @@ func check_last_bet(player_id: int):
 				PlayersSpawner.get_child(previous_player_id).dices_number -= 1
 				current_player_id = previous_player_id
 
-			
 			await get_tree().process_frame
 			send_game_state.rpc(current_player_id, current_bet_number, current_face_value)
 			finish_round_ui.rpc(get_number_of_dices_by_face(current_face_value))
@@ -129,14 +143,11 @@ func get_number_of_dices_by_face(face_value: int):
 	return dice_number
 				
 func take_next_player():
-	PlayersSpawner.get_child(current_player_id).is_move = false
 	previous_player_id = current_player_id
 	
 	if current_player_id + 1 >= PlayersSpawner.get_child_count():
 		current_player_id = 0
 	else:
 		current_player_id += 1
-	
-	PlayersSpawner.get_child(current_player_id).is_move = true
-	
+
 				

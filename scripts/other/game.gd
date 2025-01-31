@@ -40,10 +40,9 @@ var false_bet_anim_name = "false_bet"
 func _ready() -> void:
 	# Connecting signals
 	GameManager.bet_update.connect(update_bet)
-	GameManager.round_starting.connect(update_dices)
+	GameManager.round_starting.connect(update_start_ui)
 	GameManager.next_turn.connect(make_turn_possibility)
 	GameManager.round_finishing.connect(finish_round)
-	
 	# Spawn player cards
 	spawn_point.progress_ratio = 0.0
 	spawn_step = 1.0 / PlayersSpawner.get_child_count()
@@ -69,21 +68,35 @@ func update_bet():
 	dice_face_value_order.ordered_value = GameManager.current_face_value
 	
 	
-func update_dices():
-	var player_dices: Array = PlayersSpawner.get_node(str(multiplayer.get_unique_id())).dices
-	clean_dice_list()
-	for dice_i in player_dices.size():
-		if dice_layer_1.get_child_count() <= dice_layer_2.get_child_count() + 1 \
-		 and dice_layer_2.get_child_count() == 0 or dice_layer_1.get_child_count() == dice_layer_2.get_child_count():
-			var new_dice = dice_card.instantiate()
-			dice_layer_1.add_child(new_dice)
-			new_dice.roll()
-			new_dice.set_dice_value(player_dices[dice_i])
-		else:
-			var new_dice = dice_card.instantiate()
-			dice_layer_2.add_child(new_dice)
-			new_dice.roll()
-			new_dice.set_dice_value(player_dices[dice_i])
+func update_start_ui():
+	await get_tree().process_frame
+	#Update players cards
+	if PlayersSpawner.get_child_count() < players_list.get_child_count():
+		for player in players_list.get_children():
+			player.free()
+		players = {}
+		spawn_point.progress_ratio = 0.0
+		spawn_step = 1.0 / PlayersSpawner.get_child_count()
+		player_cards_generation()
+	
+	
+	# Update dices UI
+
+	if PlayersSpawner.has_node(str(multiplayer.get_unique_id())):
+		var player_dices: Array = PlayersSpawner.get_node(str(multiplayer.get_unique_id())).dices
+		clean_dice_list()
+		for dice_i in player_dices.size():
+			if dice_layer_1.get_child_count() <= dice_layer_2.get_child_count() + 1 \
+			 and dice_layer_2.get_child_count() == 0 or dice_layer_1.get_child_count() == dice_layer_2.get_child_count():
+				var new_dice = dice_card.instantiate()
+				dice_layer_1.add_child(new_dice)
+				new_dice.roll()
+				new_dice.set_dice_value(player_dices[dice_i])
+			else:
+				var new_dice = dice_card.instantiate()
+				dice_layer_2.add_child(new_dice)
+				new_dice.roll()
+				new_dice.set_dice_value(player_dices[dice_i])
 		
 		
 func clean_dice_list():
@@ -138,24 +151,25 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 		player_card.lose_dice_anim()
 		
 func player_card_lose_anim_finished():
-	print_debug("Whaaat")
 	check_bet_animation_player.play("RESET")
 	GameManager.add_ready_player.rpc_id(1)
 				
 
 func player_cards_generation():
 	"""This function generate players cards on the game field"""
-	for player: Player in PlayersSpawner.get_children():
-		if !str(player.player_id) in players.keys():
-			if player.player_id == multiplayer.get_unique_id():
-				add_player_card(multiplayer.get_unique_id())
-				spawn_point.progress_ratio += spawn_step
-			elif spawn_point.progress_ratio > 0:
-				add_player_card(player.player_id)
-				spawn_point.progress_ratio += spawn_step
+	
+	if PlayersSpawner.has_node(str(multiplayer.get_unique_id())):
+		for player: Player in PlayersSpawner.get_children():
+			if !str(player.player_id) in players.keys():
+				if player.player_id == multiplayer.get_unique_id():
+					add_player_card(multiplayer.get_unique_id())
+					spawn_point.progress_ratio += spawn_step
+				elif spawn_point.progress_ratio > 0:
+					add_player_card(player.player_id)
+					spawn_point.progress_ratio += spawn_step
 					
-	if PlayersSpawner.get_child_count() > players.keys().size():
-		player_cards_generation()
+		if PlayersSpawner.get_child_count() > players.keys().size():
+			player_cards_generation()
 
 		
 func add_player_card(player_id):
@@ -199,7 +213,4 @@ func _on_chech_button_pressed() -> void:
 		_on_raise_menu_button_pressed()
 	
 	GameManager.check_last_bet.rpc_id(1, multiplayer.get_unique_id())
-	
-	#for player in PlayersSpawner.get_children():
-		#player.is_move = false
 	print("You are cheching last bet")
