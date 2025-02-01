@@ -1,7 +1,5 @@
 extends Node2D
 
-signal lose_dice_anim_finished
-
 @export_group("Nodes")
 @export var player_name_label: Label
 @export var main_panel: Panel
@@ -40,8 +38,3 @@ func reduce_label_dice_number():
 func player_info_update():
 	is_move = player.is_move
 	dices_number = player.dices_number
-
-
-func _on_animation_player_animation_finished(anim_name: StringName) -> void:
-	if anim_name == lose_dice_anim_name:
-		lose_dice_anim_finished.emit()

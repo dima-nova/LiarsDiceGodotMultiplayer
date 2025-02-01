@@ -34,6 +34,8 @@ var check_bet_start_anim_name = "check_bet_start"
 var check_bet_plus_anim_name = "check_bet_plus"
 var true_bet_anim_name = "true_bet"
 var false_bet_anim_name = "false_bet"
+var check_true_bet_finish_anim_name = "check_true_bet_finish"
+var check_false_bet_finish_anim_name = "check_false_bet_finish"
 		
 
 
@@ -147,12 +149,16 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 				dice_layer_1.get_child(0).lose()
 		
 		var player_card = players_list.get_node(str(PlayersSpawner.get_child(GameManager.current_player_id).player_id))
-		player_card.lose_dice_anim_finished.connect(player_card_lose_anim_finished)
 		player_card.lose_dice_anim()
 		
-func player_card_lose_anim_finished():
-	check_bet_animation_player.play("RESET")
-	GameManager.add_ready_player.rpc_id(1)
+		if anim_name == true_bet_anim_name:
+			check_bet_animation_player.play(check_true_bet_finish_anim_name)
+		elif anim_name == false_bet_anim_name:
+			check_bet_animation_player.play(check_false_bet_finish_anim_name)
+			
+	elif anim_name in [check_true_bet_finish_anim_name, check_false_bet_finish_anim_name]:
+		check_bet_animation_player.play("RESET")
+		GameManager.add_ready_player.rpc_id(1)
 				
 
 func player_cards_generation():
