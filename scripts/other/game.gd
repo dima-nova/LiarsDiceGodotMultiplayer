@@ -81,12 +81,10 @@ func update_start_ui():
 		spawn_step = 1.0 / PlayersSpawner.get_child_count()
 		player_cards_generation()
 	
-	
 	# Update dices UI
-
+	clean_dice_list()
 	if PlayersSpawner.has_node(str(multiplayer.get_unique_id())):
 		var player_dices: Array = PlayersSpawner.get_node(str(multiplayer.get_unique_id())).dices
-		clean_dice_list()
 		for dice_i in player_dices.size():
 			if dice_layer_1.get_child_count() <= dice_layer_2.get_child_count() + 1 \
 			 and dice_layer_2.get_child_count() == 0 or dice_layer_1.get_child_count() == dice_layer_2.get_child_count():
@@ -99,6 +97,8 @@ func update_start_ui():
 				dice_layer_2.add_child(new_dice)
 				new_dice.roll()
 				new_dice.set_dice_value(player_dices[dice_i])
+	else:
+		waiting_label.text = "You can`t move"
 		
 		
 func clean_dice_list():
@@ -141,12 +141,13 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 				check_bet_animation_player.play(false_bet_anim_name)
 				
 	elif anim_name in [true_bet_anim_name, false_bet_anim_name]:
-		var player_dices = PlayersSpawner.get_node(str(multiplayer.get_unique_id())).dices_number
-		if player_dices < dice_layer_1.get_child_count() + dice_layer_2.get_child_count():
-			if dice_layer_2.get_child(0):
-				dice_layer_2.get_child(0).lose()
-			elif dice_layer_1.get_child(0):
-				dice_layer_1.get_child(0).lose()
+		if PlayersSpawner.has_node(str(multiplayer.get_unique_id())):
+			var player_dices = PlayersSpawner.get_node(str(multiplayer.get_unique_id())).dices_number
+			if player_dices < dice_layer_1.get_child_count() + dice_layer_2.get_child_count():
+				if dice_layer_2.get_child(0):
+					dice_layer_2.get_child(0).lose()
+				elif dice_layer_1.get_child(0):
+					dice_layer_1.get_child(0).lose()
 		
 		var player_card = players_list.get_node(str(PlayersSpawner.get_child(GameManager.current_player_id).player_id))
 		player_card.lose_dice_anim()
@@ -176,6 +177,10 @@ func player_cards_generation():
 					
 		if PlayersSpawner.get_child_count() > players.keys().size():
 			player_cards_generation()
+	else:
+		for player: Player in PlayersSpawner.get_children():
+			add_player_card(player.player_id)
+			spawn_point.progress_ratio += spawn_step
 
 		
 func add_player_card(player_id):

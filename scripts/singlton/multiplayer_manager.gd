@@ -9,8 +9,6 @@ const MAX_PLAYERS = 1000
 
 @export var player_instance := load("res://scenes/objects/player.tscn")
 
-var is_game_started: bool = false
-
 func _ready() -> void:
 	if OS.has_feature("dedicated_server"):	
 		create_server()
@@ -45,18 +43,16 @@ func join_game() -> bool:
 	
 
 func add_player(id: int) -> void:
-	if !is_game_started:
-		var new_player: Player = player_instance.instantiate()
-		new_player.player_id = id
-		new_player.name = str(id)
+	var new_player: Player = player_instance.instantiate()
+	new_player.player_id = id
+	new_player.name = str(id)
 	
-		PlayersSpawner.add_child(new_player)
-		print("Player added with id: " + str(id))
-	else:
-		print("Game was already started")
+	PlayersSpawner.add_child(new_player)
+	print("Player added with id: " + str(id))
+	
 	
 func delete_player(id: int) -> void:
-	if PlayersSpawner.get_node(str(id)):
+	if PlayersSpawner.has_node(str(id)):
 		PlayersSpawner.get_node(str(id)).queue_free()
 	print("Player deleted with id: " + str(id))
 	
@@ -78,7 +74,6 @@ func add_player_info(player_id: int, player_name: String):
 @rpc("any_peer", "call_local")
 func start_game():
 	if multiplayer.is_server():
-		is_game_started = true
 		GameManager.start_game()
 		return
 	

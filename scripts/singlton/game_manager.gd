@@ -5,6 +5,8 @@ signal round_starting
 signal next_turn
 signal round_finishing
 
+@export var is_game_started: bool = false
+
 # Game variables
 @export var current_player_id: int:
 	set(new_id):
