@@ -14,13 +14,17 @@ config/name="dice_online_try_1"
 run/main_scene="res://scenes/menues/main_menu.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 
+[audio]
+
+buses/default_bus_layout="res://settings/default_bus_layout.tres"
+
 [autoload]
 
-SfxController="*res://scripts/singlton/sfx_controller.gd"
 MultiplayerManager="*res://scripts/singlton/multiplayer_manager.gd"
 AccountManager="*res://scripts/singlton/account_manager.gd"
 PlayersSpawner="*res://scenes/objects/players_spawner.tscn"
 GameManager="*res://scripts/singlton/game_manager.gd"
+UiSounds="*res://scripts/other/ui_sounds.tscn"
 
 [display]
 
