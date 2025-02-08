@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bgra1i1nto2qw" path="res://assets/UI/images/ChechImage.png" id="3_a0l43"]
 [ext_resource type="FontFile" uid="uid://crl5ijiieuwbe" path="res://assets/UI/fonts/Nunito-SemiBold.ttf" id="6_ydu3b"]
 [ext_resource type="PackedScene" uid="uid://du14jegpuod1q" path="res://scenes/objects/dice.tscn" id="7_fae05"]
-[ext_resource type="Script" path="res://scenes/game/dice_to_raise_order_controller.gd" id="7_yedju"]
+[ext_resource type="Script" path="res://scripts/other/dice_to_raise_order_controller.gd" id="7_yedju"]
 [ext_resource type="Texture2D" uid="uid://syys5tsascvm" path="res://assets/Dices/Dice_1.png" id="8_ocg3n"]
 [ext_resource type="Texture2D" uid="uid://dmtd28l7uac3e" path="res://assets/Dices/Dice_2.png" id="9_uegii"]
 [ext_resource type="Texture2D" uid="uid://dydmqou3x7ray" path="res://assets/Dices/Dice_3.png" id="10_xn3fg"]

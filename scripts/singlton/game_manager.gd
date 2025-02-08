@@ -47,7 +47,8 @@ func start_round():
 	if multiplayer.is_server():
 		check_dropped_out_players()
 		
-		PlayersSpawner.get_child(current_player_id).is_move = true
+		if current_player_id:
+			PlayersSpawner.get_child(current_player_id).is_move = true
 		
 		previous_player_id = 0
 		current_bet_number = 0

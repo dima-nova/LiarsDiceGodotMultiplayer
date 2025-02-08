@@ -46,7 +46,7 @@ func _on_start_button_pressed() -> void:
 		print("Server not response")
 		
 func connected_to_server():
-	get_tree().change_scene_to_file("res://scenes/menues/player_setup_menu.tscn")
+	SceneSwitcher.change_scene_to_file("res://scenes/menues/player_setup_menu.tscn")
 	
 
 func _on_settings_button_pressed() -> void:

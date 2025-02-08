@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://6ff60cerx6g7"]
 
-[ext_resource type="Script" path="res://scenes/menues/play_card.gd" id="1_fllw4"]
+[ext_resource type="Script" path="res://scripts/other/play_card.gd" id="1_fllw4"]
 [ext_resource type="FontFile" uid="uid://crl5ijiieuwbe" path="res://assets/UI/fonts/Nunito-SemiBold.ttf" id="1_ui4qx"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_em0kh"]

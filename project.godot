@@ -22,9 +22,10 @@ buses/default_bus_layout="res://settings/default_bus_layout.tres"
 
 MultiplayerManager="*res://scripts/singlton/multiplayer_manager.gd"
 AccountManager="*res://scripts/singlton/account_manager.gd"
-PlayersSpawner="*res://scenes/objects/players_spawner.tscn"
+PlayersSpawner="*res://scenes/singleton/players_spawner.tscn"
 GameManager="*res://scripts/singlton/game_manager.gd"
 UiSounds="*res://scripts/other/ui_sounds.tscn"
+SceneSwitcher="*res://scenes/singleton/scene_switcher.tscn"
 
 [display]
 
