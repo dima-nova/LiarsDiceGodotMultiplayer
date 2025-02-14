@@ -12,7 +12,7 @@ signal round_finishing
 	set(new_id):
 		current_player_id = new_id
 		next_turn.emit()
-@export var previous_player_id: int = 0
+@export var next_player_id: int
 			
 @export var current_bet_number: int
 @export var current_face_value: int:
@@ -47,10 +47,9 @@ func start_round():
 	if multiplayer.is_server():
 		check_dropped_out_players()
 		
-		if current_player_id:
-			PlayersSpawner.get_child(current_player_id).is_move = true
-		
-		previous_player_id = 0
+		current_player_id = next_player_id
+		PlayersSpawner.get_child(current_player_id).is_move = true
+
 		current_bet_number = 0
 		current_face_value = 1
 	
@@ -125,10 +124,12 @@ func check_last_bet(player_id: int):
 			
 			if current_bet_number <= get_number_of_dices_by_face(current_face_value):
 				PlayersSpawner.get_child(current_player_id).dices_number -= 1
-				current_player_id = current_player_id
+				next_player_id = current_player_id
 			else:
-				PlayersSpawner.get_child(previous_player_id).dices_number -= 1
-				current_player_id = previous_player_id
+				PlayersSpawner.get_child(get_previous_player_id()).dices_number -= 1
+				print(get_previous_player_id())
+				print(current_player_id)
+				next_player_id = get_previous_player_id()
 
 			await get_tree().process_frame
 			send_game_state.rpc(current_player_id, current_bet_number, current_face_value)
@@ -146,11 +147,23 @@ func get_number_of_dices_by_face(face_value: int):
 	return dice_number
 				
 func take_next_player():
-	previous_player_id = current_player_id
 	
 	if current_player_id + 1 >= PlayersSpawner.get_child_count():
 		current_player_id = 0
 	else:
 		current_player_id += 1
 
+
+func get_previous_player_id() -> int:
+	if current_player_id - 1 < 0:
+		return 0
+	else:
+		return current_player_id - 1
+	
+	
+	
+	
+	
+	
+	
 				

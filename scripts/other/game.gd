@@ -149,8 +149,12 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 				elif dice_layer_1.get_child(0):
 					dice_layer_1.get_child(0).lose()
 		
-		var player_card = players_list.get_node(str(PlayersSpawner.get_child(GameManager.current_player_id).player_id))
-		player_card.lose_dice_anim()
+		if GameManager.current_bet_number >= check_bet_value_label.text.to_int():
+			var player_card = players_list.get_node(str(PlayersSpawner.get_child(GameManager.get_previous_player_id()).player_id))
+			player_card.lose_dice_anim()
+		else:
+			var player_card = players_list.get_node(str(PlayersSpawner.get_child(GameManager.current_player_id).player_id))
+			player_card.lose_dice_anim()
 		
 		if anim_name == true_bet_anim_name:
 			check_bet_animation_player.play(check_true_bet_finish_anim_name)
