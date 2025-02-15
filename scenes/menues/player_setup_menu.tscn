@@ -1,17 +1,21 @@
-[gd_scene load_steps=10 format=3 uid="uid://tt48vk61w5du"]
+[gd_scene load_steps=13 format=3 uid="uid://tt48vk61w5du"]
 
 [ext_resource type="Script" path="res://scripts/menu_scripts/player_setup_menu_controller.gd" id="1_qayl3"]
 [ext_resource type="Texture2D" uid="uid://bw3doktprechn" path="res://assets/UI/images/BackButton.png" id="2_tdn8s"]
-[ext_resource type="Texture2D" uid="uid://baq61ura8ivoa" path="res://assets/UI/images/ProfileButton.png" id="3_7dphd"]
+[ext_resource type="Script" path="res://scenes/menues/back_button.gd" id="3_7sj7s"]
 [ext_resource type="FontFile" uid="uid://crl5ijiieuwbe" path="res://assets/UI/fonts/Nunito-SemiBold.ttf" id="4_nu0ah"]
 [ext_resource type="Theme" uid="uid://dsdcmw4joy3em" path="res://assets/UI/themes/edit_line.tres" id="5_odg4r"]
 [ext_resource type="Theme" uid="uid://cgs7jo607d0hp" path="res://assets/UI/themes/button.tres" id="6_0wkr4"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_t75qh"]
-size = Vector2(108.981, 108.981)
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1lwli"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_tih44"]
-size = Vector2(149.5, 152.75)
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2dt8i"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_erldu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5t7hi"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jdn6g"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hynbj"]
 bg_color = Color(0, 0, 0, 0.2)
@@ -38,6 +42,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 
 [node name="ColorRect" type="ColorRect" parent="BG"]
 layout_mode = 1
@@ -62,44 +67,30 @@ anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 67.0
 grow_horizontal = 2
-mouse_filter = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="TopBar"]
-layout_mode = 2
-offset_right = 405.0
-offset_bottom = 67.0
-mouse_filter = 2
-
-[node name="ExitButton" type="Sprite2D" parent="TopBar/HBoxContainer"]
-position = Vector2(34, 32)
-scale = Vector2(0.348684, 0.348684)
-texture = ExtResource("2_tdn8s")
-
-[node name="ExitArea" type="Area2D" parent="TopBar/HBoxContainer/ExitButton"]
-position = Vector2(127.029, 81.4286)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TopBar/HBoxContainer/ExitButton/ExitArea"]
-position = Vector2(-124.161, -78.5607)
-shape = SubResource("RectangleShape2D_t75qh")
-
-[node name="ProfileButton" type="Sprite2D" parent="TopBar/HBoxContainer"]
-position = Vector2(372, 33)
-scale = Vector2(0.288461, 0.288461)
-texture = ExtResource("3_7dphd")
-
-[node name="ProfileArea" type="Area2D" parent="TopBar/HBoxContainer/ProfileButton"]
-position = Vector2(32.5, 35.75)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TopBar/HBoxContainer/ProfileButton/ProfileArea"]
-position = Vector2(-32.5, -37.375)
-shape = SubResource("RectangleShape2D_tih44")
+[node name="BackButton" type="Button" parent="TopBar"]
+offset_left = -2.0
+offset_top = -2.0
+offset_right = 70.0
+offset_bottom = 70.0
+scale = Vector2(0.5, 0.5)
+pivot_offset = Vector2(36, 36)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_1lwli")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_2dt8i")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_erldu")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_5t7hi")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_jdn6g")
+icon = ExtResource("2_tdn8s")
+icon_alignment = 1
+script = ExtResource("3_7sj7s")
 
 [node name="PlayerInfoSetupMenu" type="Control" parent="."]
 unique_name_in_owner = true
 layout_mode = 1
-anchors_preset = 15
+anchor_top = 0.094
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = 0.32
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -108,8 +99,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 183.0
-offset_bottom = 25.0
+offset_top = 135.0
+offset_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = -130
@@ -157,4 +148,7 @@ layout_mode = 2
 theme = ExtResource("6_0wkr4")
 text = "Connect"
 
+[connection signal="mouse_entered" from="TopBar/BackButton" to="TopBar/BackButton" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="TopBar/BackButton" to="TopBar/BackButton" method="_on_mouse_exited"]
+[connection signal="pressed" from="TopBar/BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="pressed" from="PlayerInfoSetupMenu/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer/ConnectButton" to="." method="_on_connect_button_pressed"]

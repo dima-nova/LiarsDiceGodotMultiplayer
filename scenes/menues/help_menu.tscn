@@ -1,4 +1,18 @@
-[gd_scene format=3 uid="uid://3q608o1wv81n"]
+[gd_scene load_steps=9 format=3 uid="uid://3q608o1wv81n"]
+
+[ext_resource type="Script" path="res://scripts/menu_scripts/help_menu_controller.gd" id="1_78v6d"]
+[ext_resource type="Texture2D" uid="uid://bw3doktprechn" path="res://assets/UI/images/BackButton.png" id="2_j230e"]
+[ext_resource type="Script" path="res://scenes/menues/back_button.gd" id="3_ldlmn"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f1new"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_glji8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qooe1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_i4yfj"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_foeyy"]
 
 [node name="HelpMenu" type="Control"]
 layout_mode = 3
@@ -7,6 +21,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_78v6d")
 
 [node name="BG" type="Control" parent="."]
 z_index = -5
@@ -33,3 +48,30 @@ anchor_right = 1.0
 offset_bottom = 67.0
 grow_horizontal = 2
 color = Color(0, 0.352941, 0.356863, 1)
+
+[node name="TopBar" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 67.0
+grow_horizontal = 2
+
+[node name="BackButton" type="Button" parent="TopBar"]
+offset_left = -2.0
+offset_top = -2.0
+offset_right = 70.0
+offset_bottom = 70.0
+scale = Vector2(0.5, 0.5)
+pivot_offset = Vector2(36, 36)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_f1new")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_glji8")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_qooe1")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_i4yfj")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_foeyy")
+icon = ExtResource("2_j230e")
+icon_alignment = 1
+script = ExtResource("3_ldlmn")
+
+[connection signal="mouse_entered" from="TopBar/BackButton" to="TopBar/BackButton" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="TopBar/BackButton" to="TopBar/BackButton" method="_on_mouse_exited"]
+[connection signal="pressed" from="TopBar/BackButton" to="." method="_on_back_button_pressed"]

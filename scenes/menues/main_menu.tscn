@@ -1,15 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://dtcuu6uta2pao"]
+[gd_scene load_steps=5 format=3 uid="uid://dtcuu6uta2pao"]
 
 [ext_resource type="Theme" uid="uid://cgs7jo607d0hp" path="res://assets/UI/themes/button.tres" id="1_47k56"]
 [ext_resource type="Script" path="res://scripts/menu_scripts/main_menu_controller.gd" id="1_lprxb"]
 [ext_resource type="Texture2D" uid="uid://c0fv2mhocswiw" path="res://assets/UI/images/QuitButton.png" id="2_g3off"]
-[ext_resource type="Texture2D" uid="uid://baq61ura8ivoa" path="res://assets/UI/images/ProfileButton.png" id="3_n5pl6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_42edg"]
 size = Vector2(108.981, 108.981)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_hnwph"]
-size = Vector2(149.5, 152.75)
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -92,7 +88,7 @@ mouse_filter = 2
 [node name="ExitButton" type="Sprite2D" parent="TopBar/HBoxContainer"]
 unique_name_in_owner = true
 position = Vector2(34, 32)
-scale = Vector2(0.348684, 0.348684)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("2_g3off")
 
 [node name="ExitArea" type="Area2D" parent="TopBar/HBoxContainer/ExitButton"]
@@ -101,19 +97,6 @@ position = Vector2(127.029, 81.4286)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TopBar/HBoxContainer/ExitButton/ExitArea"]
 position = Vector2(-124.161, -78.5607)
 shape = SubResource("RectangleShape2D_42edg")
-
-[node name="ProfileButton" type="Sprite2D" parent="TopBar/HBoxContainer"]
-unique_name_in_owner = true
-position = Vector2(372, 33)
-scale = Vector2(0.288461, 0.288461)
-texture = ExtResource("3_n5pl6")
-
-[node name="ProfileArea" type="Area2D" parent="TopBar/HBoxContainer/ProfileButton"]
-position = Vector2(32.5, 35.75)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TopBar/HBoxContainer/ProfileButton/ProfileArea"]
-position = Vector2(-32.5, -37.375)
-shape = SubResource("RectangleShape2D_hnwph")
 
 [node name="RunDedicatedServerButton" type="Button" parent="."]
 layout_mode = 0
@@ -132,7 +115,4 @@ text = "Run server"
 [connection signal="input_event" from="TopBar/HBoxContainer/ExitButton/ExitArea" to="." method="_on_exit_area_input_event"]
 [connection signal="mouse_entered" from="TopBar/HBoxContainer/ExitButton/ExitArea" to="." method="_on_exit_area_mouse_entered"]
 [connection signal="mouse_exited" from="TopBar/HBoxContainer/ExitButton/ExitArea" to="." method="_on_exit_area_mouse_exited"]
-[connection signal="input_event" from="TopBar/HBoxContainer/ProfileButton/ProfileArea" to="." method="_on_profile_area_input_event"]
-[connection signal="mouse_entered" from="TopBar/HBoxContainer/ProfileButton/ProfileArea" to="." method="_on_profile_area_mouse_entered"]
-[connection signal="mouse_exited" from="TopBar/HBoxContainer/ProfileButton/ProfileArea" to="." method="_on_profile_area_mouse_exited"]
 [connection signal="pressed" from="RunDedicatedServerButton" to="." method="_on_run_dedicated_server_button_pressed"]

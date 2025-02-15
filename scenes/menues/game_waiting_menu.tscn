@@ -1,17 +1,21 @@
-[gd_scene load_steps=9 format=3 uid="uid://dsjrxgc4rmjmb"]
+[gd_scene load_steps=12 format=3 uid="uid://dsjrxgc4rmjmb"]
 
 [ext_resource type="Script" path="res://scripts/menu_scripts/game_waiting_menu.gd" id="1_naeta"]
 [ext_resource type="PackedScene" uid="uid://6ff60cerx6g7" path="res://scenes/menues/play_card.tscn" id="2_0qr7d"]
 [ext_resource type="Texture2D" uid="uid://bw3doktprechn" path="res://assets/UI/images/BackButton.png" id="3_mum2x"]
-[ext_resource type="Texture2D" uid="uid://baq61ura8ivoa" path="res://assets/UI/images/ProfileButton.png" id="4_obnmg"]
 [ext_resource type="Theme" uid="uid://cgs7jo607d0hp" path="res://assets/UI/themes/button.tres" id="5_y3xg4"]
 [ext_resource type="FontFile" uid="uid://crl5ijiieuwbe" path="res://assets/UI/fonts/Nunito-SemiBold.ttf" id="6_8sb6a"]
+[ext_resource type="Script" path="res://scenes/menues/back_button.gd" id="6_a7hdo"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_fl2m5"]
-size = Vector2(108.981, 108.981)
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_motnb"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_i05pe"]
-size = Vector2(149.5, 152.75)
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nbfft"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_10t3v"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m06ju"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4jps8"]
 
 [node name="GameWaitingMenu" type="Control" node_paths=PackedStringArray("players_list")]
 layout_mode = 3
@@ -49,45 +53,6 @@ anchor_right = 1.0
 offset_bottom = 67.0
 grow_horizontal = 2
 color = Color(0, 0.352941, 0.356863, 1)
-
-[node name="TopBar" type="Control" parent="."]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 67.0
-grow_horizontal = 2
-mouse_filter = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="TopBar"]
-layout_mode = 2
-offset_right = 405.0
-offset_bottom = 67.0
-mouse_filter = 2
-
-[node name="ExitButton" type="Sprite2D" parent="TopBar/HBoxContainer"]
-position = Vector2(34, 32)
-scale = Vector2(0.348684, 0.348684)
-texture = ExtResource("3_mum2x")
-
-[node name="ExitArea" type="Area2D" parent="TopBar/HBoxContainer/ExitButton"]
-position = Vector2(127.029, 81.4286)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TopBar/HBoxContainer/ExitButton/ExitArea"]
-position = Vector2(-124.161, -78.5607)
-shape = SubResource("RectangleShape2D_fl2m5")
-
-[node name="ProfileButton" type="Sprite2D" parent="TopBar/HBoxContainer"]
-visible = false
-position = Vector2(372, 33)
-scale = Vector2(0.288461, 0.288461)
-texture = ExtResource("4_obnmg")
-
-[node name="ProfileArea" type="Area2D" parent="TopBar/HBoxContainer/ProfileButton"]
-position = Vector2(32.5, 35.75)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TopBar/HBoxContainer/ProfileButton/ProfileArea"]
-position = Vector2(-32.5, -37.375)
-shape = SubResource("RectangleShape2D_i05pe")
 
 [node name="MainUI" type="Control" parent="."]
 layout_mode = 1
@@ -142,4 +107,31 @@ text = "Players in Game"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="TopBar" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 67.0
+grow_horizontal = 2
+
+[node name="BackButton" type="Button" parent="TopBar"]
+layout_mode = 0
+offset_left = -2.0
+offset_top = -2.0
+offset_right = 70.0
+offset_bottom = 70.0
+scale = Vector2(0.5, 0.5)
+pivot_offset = Vector2(36, 36)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_motnb")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_nbfft")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_10t3v")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_m06ju")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_4jps8")
+icon = ExtResource("3_mum2x")
+icon_alignment = 1
+script = ExtResource("6_a7hdo")
+
 [connection signal="pressed" from="MainUI/StartGameButton" to="." method="_on_start_game_button_pressed"]
+[connection signal="mouse_entered" from="TopBar/BackButton" to="TopBar/BackButton" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="TopBar/BackButton" to="TopBar/BackButton" method="_on_mouse_exited"]
+[connection signal="pressed" from="TopBar/BackButton" to="." method="_on_back_button_pressed"]

@@ -26,7 +26,13 @@ func _process(delta: float) -> void:
 				player_card.queue_free()
 				
 		
-
-
 func _on_start_game_button_pressed() -> void:
 	MultiplayerManager.start_game.rpc()
+
+
+func _on_back_button_pressed() -> void:
+	if multiplayer.has_multiplayer_peer():
+		multiplayer.multiplayer_peer.close()
+		multiplayer.multiplayer_peer = null
+		
+	SceneSwitcher.change_scene_to_file("res://scenes/menues/main_menu.tscn")

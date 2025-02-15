@@ -54,7 +54,7 @@ func _on_settings_button_pressed() -> void:
 	
 
 func _on_help_button_pressed() -> void:
-	print("Help")
+	SceneSwitcher.change_scene_to_file("res://scenes/menues/help_menu.tscn")
 
 
 func _on_run_dedicated_server_button_pressed() -> void:
