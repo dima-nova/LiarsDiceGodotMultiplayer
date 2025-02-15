@@ -50,7 +50,7 @@ func connected_to_server():
 	
 
 func _on_settings_button_pressed() -> void:
-	print("Settings")
+	SceneSwitcher.change_scene_to_file("res://scenes/menues/settings_menu.tscn")
 	
 
 func _on_help_button_pressed() -> void:

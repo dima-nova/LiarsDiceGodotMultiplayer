@@ -57,6 +57,7 @@ offset_bottom = 67.0
 grow_horizontal = 2
 
 [node name="BackButton" type="Button" parent="TopBar"]
+layout_mode = 0
 offset_left = -2.0
 offset_top = -2.0
 offset_right = 70.0

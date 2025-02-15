@@ -26,6 +26,7 @@ PlayersSpawner="*res://scenes/singleton/players_spawner.tscn"
 GameManager="*res://scripts/singlton/game_manager.gd"
 UiSounds="*res://scripts/other/ui_sounds.tscn"
 SceneSwitcher="*res://scenes/singleton/scene_switcher.tscn"
+ConfigFileHandler="*res://scripts/singlton/config_file_handler.gd"
 
 [display]
 
