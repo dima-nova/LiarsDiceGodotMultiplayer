@@ -1,0 +1,96 @@
+# LANGUAGE translation for dice_online_try_1 for the following files:
+# res://scenes/menues/main_menu.tscn
+# res://scenes/menues/game_waiting_menu.tscn
+# res://scenes/menues/player_setup_menu.tscn
+# res://scenes/menues/settings_menu.tscn
+# res://scenes/game/game.tscn
+#
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: dice_online_try_1\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8-bit\n"
+
+#: scenes/menues/main_menu.tscn
+msgid "START_BUTTON"
+msgstr ""
+
+#: scenes/menues/main_menu.tscn
+msgid "SETTINGS_BUTTON"
+msgstr ""
+
+#: scenes/menues/main_menu.tscn
+msgid "HELP_BUTTON"
+msgstr ""
+
+#: scenes/menues/main_menu.tscn
+msgid "Run server"
+msgstr ""
+
+#: scenes/menues/game_waiting_menu.tscn
+msgid "START_GAME_BUTTON"
+msgstr ""
+
+#: scenes/menues/game_waiting_menu.tscn
+msgid "PLAYERS_LABEL"
+msgstr ""
+
+#: scenes/menues/player_setup_menu.tscn
+msgid "PLAYER_SET_UP_LABEL"
+msgstr ""
+
+#: scenes/menues/player_setup_menu.tscn
+msgid "NICKNAME_FIELD"
+msgstr ""
+
+#: scenes/menues/player_setup_menu.tscn
+msgid "CONNECT_BUTTON"
+msgstr ""
+
+#: scenes/menues/settings_menu.tscn
+msgid "SETTINGS_LABEL"
+msgstr ""
+
+#: scenes/menues/settings_menu.tscn
+msgid "MUSIC_VOLUME_LABEL"
+msgstr ""
+
+#: scenes/menues/settings_menu.tscn
+msgid "SOUND_EFFECTS_VOLUME_LABEL"
+msgstr ""
+
+#: scenes/menues/settings_menu.tscn
+msgid "LANGUAGE_LABEL"
+msgstr ""
+
+#: scenes/game/game.tscn
+msgid "   RAISE_BUTTON"
+msgstr ""
+
+#: scenes/game/game.tscn
+msgid "   CHECK_LABEL"
+msgstr ""
+
+#: scenes/game/game.tscn
+msgid "WAIT_LABEL"
+msgstr ""
+
+#: scenes/game/game.tscn
+msgid "0"
+msgstr ""
+
+#: scenes/game/game.tscn
+msgid "1"
+msgstr ""
+
+#: scenes/game/game.tscn
+msgid "RAISE_BUTTON"
+msgstr ""
+
+#: scenes/game/game.tscn
+msgid "CHECK_LABEL"
+msgstr ""

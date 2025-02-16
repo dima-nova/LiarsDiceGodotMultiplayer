@@ -1,0 +1,148 @@
+# LANGUAGE translation for dice_online_try_1 for the following files:
+# res://scenes/menues/main_menu.tscn
+# res://scenes/menues/game_waiting_menu.tscn
+# res://scenes/menues/player_setup_menu.tscn
+# res://scenes/menues/settings_menu.tscn
+#
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: dice_online_try_1\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: uk\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.5\n"
+
+#: scenes/menues/main_menu.tscn
+msgid "START_BUTTON"
+msgstr "Грати"
+
+#: scenes/menues/main_menu.tscn
+msgid "SETTINGS_BUTTON"
+msgstr "Налаштування"
+
+#: scenes/menues/main_menu.tscn
+msgid "HELP_BUTTON"
+msgstr "Допомога"
+
+#: scenes/menues/main_menu.tscn
+msgid "Run server"
+msgstr ""
+
+#: scenes/menues/game_waiting_menu.tscn
+msgid "START_GAME_BUTTON"
+msgstr "Почати Гру"
+
+#: scenes/menues/game_waiting_menu.tscn
+msgid "PLAYERS_LABEL"
+msgstr "Гравці у Грі"
+
+#: scenes/menues/player_setup_menu.tscn
+msgid "PLAYER_SET_UP_LABEL"
+msgstr "Напишіть нікнейм"
+
+#: scenes/menues/player_setup_menu.tscn
+msgid "NICKNAME_FIELD"
+msgstr "Напишіть своє ім'я"
+
+#: scenes/menues/player_setup_menu.tscn
+msgid "CONNECT_BUTTON"
+msgstr "Під'єднатися"
+
+#: scenes/menues/settings_menu.tscn
+msgid "SETTINGS_LABEL"
+msgstr "Налаштування"
+
+#: scenes/menues/settings_menu.tscn
+msgid "MUSIC_VOLUME_LABEL"
+msgstr "Гучність музики"
+
+#: scenes/menues/settings_menu.tscn
+msgid "SOUND_EFFECTS_VOLUME_LABEL"
+msgstr "Гучність ефектів"
+
+#: scenes/menues/settings_menu.tscn
+msgid "LANGUAGE_LABEL"
+msgstr "Мова"
+
+#: scenes/game/game.tscn
+msgid "CHECK_LABEL"
+msgstr "Чек"
+
+#: scenes/game/game.tscn
+msgid "   CHECK_LABEL"
+msgstr "   Чек"
+
+#: scenes/game/game.tscn
+msgid "WAIT_LABEL"
+msgstr "Чекайте на ваш хід..."
+
+#: scenes/game/game.tscn
+msgid "   RAISE_BUTTON"
+msgstr "   Збільшити"
+
+#: scenes/game/game.tscn
+msgid "RAISE_BUTTON"
+msgstr "Збільшити"
+
+#: scenes/game/game.tscn
+msgid "   CLOSE_BUTTON"
+msgstr "   Закрити"
+
+#: scenes/menues/help_menu.tscn
+msgid "CANT_MOVE_LABEL"
+msgstr "Ви не можете ходити"
+
+
+#: scenes/menues/help_menu.tscn
+msgid "RULES_LABEL"
+msgstr "Правила гри"
+
+#: scenes/menues/help_menu.tscn
+msgid "MAIN_RULES_TEXT"
+msgstr "Мета гри – обдурити суперників. В \"Liar’s Dice\" можна грати удвох або з більшою кількістю гравців.\n"
+"\n"
+"Підготовка:\n"
+"Кожен гравець отримує 5 кубиків. На початку раунду всі кидають кубики та таємно дивляться на свої значення.\n"
+"\n"
+"Хід гри:\n"
+"Гравці по черзі (проти годинникової стрілки) роблять ставки, називаючи кількість кубиків певного значення у грі. Кожна наступна ставка має бути більшою за попередню:\n"
+"\n"
+"Можна збільшувати кількість кубиків.\n"
+"Можна підвищувати значення граней.\n"
+"Не можна зменшувати кількість кубиків.\n"
+"Одиниці – джокери, що замінюють будь-яке значення.\n"
+"\n"
+"Приклади:\n"
+"\"Три трійки\" більше, ніж \"дві трійки\".\n"
+"\"Дві четвірки\" більше, ніж \"дві трійки\".\n"
+"\n"
+"Замість підвищення ставки під час свого ходу ви можете перевірити ставку попереднього гравця, сказавши \"Чек\".\n"
+"\n"
+"Коли гравець оголошує \"Чек\" – всі гравці відкривають кубики:\n"
+"Якщо загальна кількість відповідних кубиків виявилася меншою, ніж заявлено, то гравець, якого перевіряли, програє раунд.\n"
+"Але якщо кількість кубиків достатня, то програє той, хто оголосив \"Чек\".\n"
+"Той гравець, який програв, втрачає один кубик. Наступний раунд починає гравець, що втратив кубик.\n"
+"\n"
+"Виграє останній гравець, в якого залишились кубики."
+
+#: scenes/menues/help_menu.tscn
+msgid "CREATORS_LABEL"
+msgstr "Розробники"
+
+#: scenes/menues/help_menu.tscn
+msgid "CREATORS_TEXT"
+msgstr ""
+"Гра створена ентузіастом:\n-Дмитром Новінським.\n"
+"Слідкуйте за оновленнями:\nhttps://github.com/dima-nova/LiarsDiceGodotMultiplayer"
+"\n"
+"\n"
+"\n"
+"\n"

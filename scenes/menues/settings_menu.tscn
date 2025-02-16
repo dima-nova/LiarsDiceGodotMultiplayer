@@ -104,7 +104,7 @@ offset_bottom = 103.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("4_lhs6d")
 theme_override_font_sizes/font_size = 40
-text = "Settings"
+text = "SETTINGS_LABEL"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -140,7 +140,7 @@ offset_bottom = 53.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("4_lhs6d")
 theme_override_font_sizes/font_size = 30
-text = "Music Volume"
+text = "MUSIC_VOLUME_LABEL"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -150,7 +150,6 @@ offset_left = 36.0
 offset_top = 60.0
 offset_right = 367.0
 offset_bottom = 76.0
-value = 50.0
 
 [node name="SfxVolumeControl" type="Control" parent="MainUI/SettingsOrder"]
 anchors_preset = 0
@@ -159,6 +158,7 @@ offset_right = 311.0
 offset_bottom = 188.0
 
 [node name="Panel" type="Panel" parent="MainUI/SettingsOrder/SfxVolumeControl"]
+layout_mode = 0
 offset_left = 28.0
 offset_top = 5.0
 offset_right = 376.0
@@ -174,7 +174,7 @@ offset_bottom = 53.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("4_lhs6d")
 theme_override_font_sizes/font_size = 30
-text = "Sound Effects Volume"
+text = "SOUND_EFFECTS_VOLUME_LABEL"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -184,7 +184,6 @@ offset_left = 36.0
 offset_top = 58.0
 offset_right = 367.0
 offset_bottom = 74.0
-value = 50.0
 
 [node name="LanguageSettingsControl" type="Control" parent="MainUI/SettingsOrder"]
 anchors_preset = 0
@@ -193,6 +192,7 @@ offset_right = 311.0
 offset_bottom = 290.0
 
 [node name="Panel" type="Panel" parent="MainUI/SettingsOrder/LanguageSettingsControl"]
+layout_mode = 0
 offset_left = 28.0
 offset_top = 5.0
 offset_right = 376.0
@@ -208,7 +208,7 @@ offset_bottom = 53.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("4_lhs6d")
 theme_override_font_sizes/font_size = 30
-text = "Language"
+text = "LANGUAGE_LABEL"
 horizontal_alignment = 1
 vertical_alignment = 1
 

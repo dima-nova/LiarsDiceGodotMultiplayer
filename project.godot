@@ -33,3 +33,8 @@ ConfigFileHandler="*res://scripts/singlton/config_file_handler.gd"
 window/size/viewport_width=405
 window/size/viewport_height=720
 window/size/resizable=false
+
+[internationalization]
+
+locale/translations=PackedStringArray("res://settings/localization/en.po", "res://settings/localization/uk.po")
+locale/translations_pot_files=PackedStringArray("res://scenes/menues/main_menu.tscn", "res://scenes/menues/game_waiting_menu.tscn", "res://scenes/menues/player_setup_menu.tscn", "res://scenes/menues/settings_menu.tscn", "res://scenes/game/game.tscn")

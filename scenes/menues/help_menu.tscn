@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://3q608o1wv81n"]
+[gd_scene load_steps=10 format=3 uid="uid://3q608o1wv81n"]
 
 [ext_resource type="Script" path="res://scripts/menu_scripts/help_menu_controller.gd" id="1_78v6d"]
 [ext_resource type="Texture2D" uid="uid://bw3doktprechn" path="res://assets/UI/images/BackButton.png" id="2_j230e"]
 [ext_resource type="Script" path="res://scenes/menues/back_button.gd" id="3_ldlmn"]
+[ext_resource type="FontFile" uid="uid://crl5ijiieuwbe" path="res://assets/UI/fonts/Nunito-SemiBold.ttf" id="4_hwm6w"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f1new"]
 
@@ -72,6 +73,80 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_foeyy")
 icon = ExtResource("2_j230e")
 icon_alignment = 1
 script = ExtResource("3_ldlmn")
+
+[node name="MainUI" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -653.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="MainUI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 46
+theme_override_constants/margin_right = 16
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MainUI/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainUI/MarginContainer/ScrollContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="Rules" type="VBoxContainer" parent="MainUI/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="RulesLabel" type="Label" parent="MainUI/MarginContainer/ScrollContainer/VBoxContainer/Rules"]
+custom_minimum_size = Vector2(373, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("4_hwm6w")
+theme_override_font_sizes/font_size = 40
+text = "RULES_LABEL"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RulesText" type="Label" parent="MainUI/MarginContainer/ScrollContainer/VBoxContainer/Rules"]
+custom_minimum_size = Vector2(373, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("4_hwm6w")
+theme_override_font_sizes/font_size = 18
+text = "MAIN_RULES_TEXT"
+autowrap_mode = 3
+
+[node name="Creators" type="VBoxContainer" parent="MainUI/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="CreatorsLabel" type="Label" parent="MainUI/MarginContainer/ScrollContainer/VBoxContainer/Creators"]
+custom_minimum_size = Vector2(373, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("4_hwm6w")
+theme_override_font_sizes/font_size = 40
+text = "CREATORS_LABEL"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CreatorsText" type="Label" parent="MainUI/MarginContainer/ScrollContainer/VBoxContainer/Creators"]
+custom_minimum_size = Vector2(373, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("4_hwm6w")
+theme_override_font_sizes/font_size = 18
+text = "CREATORS_TEXT"
+autowrap_mode = 3
 
 [connection signal="mouse_entered" from="TopBar/BackButton" to="TopBar/BackButton" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="TopBar/BackButton" to="TopBar/BackButton" method="_on_mouse_exited"]

@@ -1,0 +1,148 @@
+# LANGUAGE translation for dice_online_try_1 for the following files:
+# res://scenes/menues/main_menu.tscn
+# res://scenes/menues/game_waiting_menu.tscn
+# res://scenes/menues/player_setup_menu.tscn
+# res://scenes/menues/settings_menu.tscn
+#
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: dice_online_try_1\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.5\n"
+
+#: scenes/menues/main_menu.tscn
+msgid "START_BUTTON"
+msgstr "START"
+
+#: scenes/menues/main_menu.tscn
+msgid "SETTINGS_BUTTON"
+msgstr "SETTINGS"
+
+#: scenes/menues/main_menu.tscn
+msgid "HELP_BUTTON"
+msgstr "HELP"
+
+#: scenes/menues/main_menu.tscn
+msgid "Run server"
+msgstr ""
+
+#: scenes/menues/game_waiting_menu.tscn
+msgid "START_GAME_BUTTON"
+msgstr "Start Game"
+
+#: scenes/menues/game_waiting_menu.tscn
+msgid "PLAYERS_LABEL"
+msgstr "Players in Game"
+
+#: scenes/menues/player_setup_menu.tscn
+msgid "PLAYER_SET_UP_LABEL"
+msgstr "Write nickname"
+
+#: scenes/menues/player_setup_menu.tscn
+msgid "NICKNAME_FIELD"
+msgstr "Type your name"
+
+#: scenes/menues/player_setup_menu.tscn
+msgid "CONNECT_BUTTON"
+msgstr "Connect"
+
+#: scenes/menues/settings_menu.tscn
+msgid "SETTINGS_LABEL"
+msgstr "Settings"
+
+#: scenes/menues/settings_menu.tscn
+msgid "MUSIC_VOLUME_LABEL"
+msgstr "Music Volume"
+
+#: scenes/menues/settings_menu.tscn
+msgid "SOUND_EFFECTS_VOLUME_LABEL"
+msgstr "Sound Effects Volume"
+
+#: scenes/menues/settings_menu.tscn
+msgid "LANGUAGE_LABEL"
+msgstr "Language"
+
+#: scenes/game/game.tscn
+msgid "CHECK_LABEL"
+msgstr "Check"
+
+#: scenes/game/game.tscn
+msgid "   CHECK_LABEL"
+msgstr "   Check"
+
+#: scenes/game/game.tscn
+msgid "WAIT_LABEL"
+msgstr "Wait for your turn"
+
+#: scenes/game/game.tscn
+msgid "   RAISE_BUTTON"
+msgstr "   Raise"
+
+#: scenes/game/game.tscn
+msgid "RAISE_BUTTON"
+msgstr "Raise"
+
+#: scenes/game/game.tscn
+msgid "   CLOSE_BUTTON"
+msgstr "   Close"
+
+#: scenes/menues/help_menu.tscn
+msgid "CANT_MOVE_LABEL"
+msgstr "You can`t move"
+
+#: scenes/menues/help_menu.tscn
+msgid "RULES_LABEL"
+msgstr "Game Rules"
+
+#: scenes/menues/help_menu.tscn
+msgid "MAIN_RULES_TEXT"
+msgstr "Objective:\n"
+"The goal of the game is to deceive your opponents. Liar’s Dice can be played with two or more players.\n"
+"\n"
+"Setup:\n"
+"Each player receives 5 dice. At the start of a round, all players roll their dice and secretly look at their values.\n"
+"\n"
+"Gameplay:\n"
+"Players take turns (counterclockwise) making bids, stating the number of dice of a certain value in play. Each new bid must be higher than the previous one:\n"
+"\n"
+"You can increase the number of dice.\n"
+"You can raise the face value.\n"
+"You cannot decrease the number of dice.\n"
+"Ones are wild and count as any value.\n"
+"\n"
+"Examples:\n"
+"'Three threes' is higher than 'two threes.'\n"
+"'Two fours' is higher than 'two threes.'\n"
+"\n"
+"Instead of raising the bid, you may challenge the previous player's bid by saying 'Check'\n"
+"\n"
+"Checking:\n"
+"When a player calls 'Check' all players reveal their dice:\n"
+"If the total number of matching dice is less than the declared bid, the player who made the bid loses the round.\n"
+"If the number is equal to or greater than the bid, the player who called 'Check' loses instead.\n"
+"The losing player discards one die. The next round starts with the player who lost a die.\n"
+"The last player with dice remaining wins the game."
+
+#: scenes/menues/help_menu.tscn
+msgid "CREATORS_LABEL"
+msgstr "Creators"
+
+#: scenes/menues/help_menu.tscn
+msgid "CREATORS_TEXT"
+msgstr ""
+"The game was created by an enthusiast:\n-Dmytro Novynskyi.\n"
+"Follow updates:\nhttps://github.com/dima-nova/LiarsDiceGodotMultiplayer"
+"\n"
+"\n"
+"\n"
+"\n"

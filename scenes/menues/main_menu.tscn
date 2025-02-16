@@ -59,17 +59,17 @@ theme_override_constants/separation = 6
 [node name="StartButton" type="Button" parent="MainButtons/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("1_47k56")
-text = "START"
+text = "START_BUTTON"
 
 [node name="SettingsButton" type="Button" parent="MainButtons/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("1_47k56")
-text = "SETTINGS"
+text = "SETTINGS_BUTTON"
 
 [node name="HelpButton" type="Button" parent="MainButtons/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("1_47k56")
-text = "HELP"
+text = "HELP_BUTTON"
 
 [node name="TopBar" type="Control" parent="."]
 layout_mode = 1

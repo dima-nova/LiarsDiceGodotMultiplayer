@@ -21,9 +21,9 @@ func _process(delta: float) -> void:
 				
 	# if player disconnect from the game
 	if PlayersSpawner.get_child_count() < players_list.get_child_count():
-		for player_card in players_list.get_children():
-			if !player_card.name in PlayersSpawner.get_children().map(func(child): return child.name):
-				player_card.queue_free()
+		for card in players_list.get_children():
+			if !card.name in PlayersSpawner.get_children().map(func(child): return child.name):
+				card.queue_free()
 				
 		
 func _on_start_game_button_pressed() -> void:

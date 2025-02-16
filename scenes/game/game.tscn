@@ -78,7 +78,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": ["   Raise"]
+"values": ["   RAISE_BUTTON"]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -186,7 +186,7 @@ tracks/10/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": ["Check!"]
+"values": ["CHECK_LABEL"]
 }
 tracks/11/type = "value"
 tracks/11/imported = false
@@ -326,7 +326,7 @@ tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": ["Check!"]
+"values": ["CHECK_LABEL"]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
@@ -635,10 +635,10 @@ theme_override_constants/separation = 12
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("3_1o5fy")
-text = "   Raise"
+text = "   RAISE_BUTTON"
 
 [node name="Sprite2D" type="Sprite2D" parent="MainUI/ActionMenu/MarginContainer/ActionButtons/RaiseMenuButton"]
-position = Vector2(48, 33.2083)
+position = Vector2(25, 34.2083)
 scale = Vector2(0.34375, 0.37128)
 texture = ExtResource("2_th4ax")
 
@@ -646,10 +646,10 @@ texture = ExtResource("2_th4ax")
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("3_1o5fy")
-text = "   Check"
+text = "   CHECK_LABEL"
 
 [node name="Sprite2D" type="Sprite2D" parent="MainUI/ActionMenu/MarginContainer/ActionButtons/ChechButton"]
-position = Vector2(44.9248, 28.9014)
+position = Vector2(43.9248, 28.9014)
 scale = Vector2(0.449792, 0.434215)
 texture = ExtResource("3_a0l43")
 
@@ -658,7 +658,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("6_ydu3b")
 theme_override_font_sizes/font_size = 36
-text = "Wait for your turn..."
+text = "WAIT_LABEL"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -808,7 +808,7 @@ offset_right = 364.0
 offset_bottom = 168.0
 theme = ExtResource("3_1o5fy")
 theme_override_font_sizes/font_size = 22
-text = "Raise"
+text = "RAISE_BUTTON"
 
 [node name="Dices" type="MarginContainer" parent="MainUI"]
 z_index = -1
@@ -895,7 +895,7 @@ grow_vertical = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("6_ydu3b")
 theme_override_font_sizes/font_size = 46
-text = "Check!"
+text = "CHECK_LABEL"
 horizontal_alignment = 1
 vertical_alignment = 1
 

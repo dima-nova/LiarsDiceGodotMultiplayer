@@ -110,7 +110,7 @@ theme_override_constants/separation = -130
 layout_mode = 2
 theme_override_fonts/font = ExtResource("4_nu0ah")
 theme_override_font_sizes/font_size = 36
-text = "Write nickname"
+text = "PLAYER_SET_UP_LABEL"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -140,14 +140,14 @@ theme_override_constants/separation = 8
 [node name="PlayerNameLineEdit" type="LineEdit" parent="PlayerInfoSetupMenu/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("5_odg4r")
-placeholder_text = "Type your name"
+placeholder_text = "NICKNAME_FIELD"
 alignment = 1
 max_length = 50
 
 [node name="ConnectButton" type="Button" parent="PlayerInfoSetupMenu/VBoxContainer/MarginContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("6_0wkr4")
-text = "Connect"
+text = "CONNECT_BUTTON"
 
 [connection signal="mouse_entered" from="TopBar/BackButton" to="TopBar/BackButton" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="TopBar/BackButton" to="TopBar/BackButton" method="_on_mouse_exited"]

@@ -41,4 +41,8 @@ func _on_sfx_volume_slider_drag_ended(value_changed: bool) -> void:
 
 
 func _on_option_language_button_item_selected(index: int) -> void:
+	var locale = ConfigFileHandler.LANGUAGES_DICT[language_option_button.get_item_text(index)]
+	print(locale)
+	TranslationServer.set_locale(locale)	
+	
 	ConfigFileHandler.save_interface_setting("language", ConfigFileHandler.LANGUAGES[index])

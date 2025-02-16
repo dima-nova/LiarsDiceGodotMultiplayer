@@ -2,6 +2,7 @@ extends Node
 
 
 const LANGUAGES: Array = ["english", "ukrainian"]
+const LANGUAGES_DICT: Dictionary = {"english": "en", "ukrainian": "uk"}
 
 var config = ConfigFile.new()
 const SETTINGS_FILE_PATH = "user://settings.ini"
@@ -16,8 +17,18 @@ func _ready() -> void:
 		config.set_value("interface", "language", "english")
 		
 		config.save(SETTINGS_FILE_PATH)
+		
 	else:
 		config.load(SETTINGS_FILE_PATH)
+	
+	
+	# Set up settings
+	
+	# Interface
+	var locale = LANGUAGES_DICT[load_interface_settings().language]
+	TranslationServer.set_locale(locale)	
+	
+	
 		
 		
 func save_audio_setting(key: String, value):

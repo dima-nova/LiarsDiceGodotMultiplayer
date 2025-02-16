@@ -1,7 +1,6 @@
 extends Control
 
 @onready var exit_button_sprite := %ExitButton
-@onready var profile_button_sprite := %ProfileButton
 
 const SCALE_VALUE = 0.08
 
@@ -27,14 +26,6 @@ func _on_exit_area_mouse_entered() -> void:
 
 func _on_exit_area_mouse_exited() -> void:
 	exit_button_sprite.scale -= Vector2(SCALE_VALUE, SCALE_VALUE)
-
-
-func _on_profile_area_mouse_entered() -> void:
-	profile_button_sprite.scale += Vector2(SCALE_VALUE, SCALE_VALUE)
-	
-	
-func _on_profile_area_mouse_exited() -> void:
-	profile_button_sprite.scale -= Vector2(SCALE_VALUE, SCALE_VALUE)
 
 
 # Main Buttons

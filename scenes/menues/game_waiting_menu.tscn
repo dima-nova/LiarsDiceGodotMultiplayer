@@ -93,7 +93,7 @@ offset_top = 554.0
 offset_right = 389.0
 offset_bottom = 626.0
 theme = ExtResource("5_y3xg4")
-text = "Start Game"
+text = "START_GAME_BUTTON"
 
 [node name="Label" type="Label" parent="MainUI"]
 layout_mode = 0
@@ -103,7 +103,7 @@ offset_bottom = 137.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("6_8sb6a")
 theme_override_font_sizes/font_size = 36
-text = "Players in Game"
+text = "PLAYERS_LABEL"
 horizontal_alignment = 1
 vertical_alignment = 1
 

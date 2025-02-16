@@ -98,7 +98,7 @@ func update_start_ui():
 				new_dice.roll()
 				new_dice.set_dice_value(player_dices[dice_i])
 	else:
-		waiting_label.text = "You can`t move"
+		waiting_label.text = "CANT_MOVE_LABEL"
 		
 		
 func clean_dice_list():
@@ -203,11 +203,11 @@ func add_player_card(player_id):
 
 
 func _on_raise_menu_button_pressed() -> void:
-	if raise_menu_button.text == "   Raise":
-		raise_menu_button.text = "   Close"
+	if raise_menu_button.text == "   RAISE_BUTTON":
+		raise_menu_button.text = "   CLOSE_BUTTON"
 		menu_animation_player.play("raise_menu_open")
 	else:
-		raise_menu_button.text = "   Raise"
+		raise_menu_button.text = "   RAISE_BUTTON"
 		menu_animation_player.play_backwards("raise_menu_open")
 
 
