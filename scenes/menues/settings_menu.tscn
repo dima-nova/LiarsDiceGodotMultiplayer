@@ -226,5 +226,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_jw4cm")
 [connection signal="mouse_exited" from="TopBar/BackButton" to="TopBar/BackButton" method="_on_mouse_exited"]
 [connection signal="pressed" from="TopBar/BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="drag_ended" from="MainUI/SettingsOrder/MusicVolumeControl/MusicVolumeSlider" to="." method="_on_music_volume_slider_drag_ended"]
+[connection signal="value_changed" from="MainUI/SettingsOrder/MusicVolumeControl/MusicVolumeSlider" to="." method="_on_music_volume_slider_value_changed"]
 [connection signal="drag_ended" from="MainUI/SettingsOrder/SfxVolumeControl/SfxVolumeSlider" to="." method="_on_sfx_volume_slider_drag_ended"]
+[connection signal="value_changed" from="MainUI/SettingsOrder/SfxVolumeControl/SfxVolumeSlider" to="." method="_on_sfx_volume_slider_value_changed"]
 [connection signal="item_selected" from="MainUI/SettingsOrder/LanguageSettingsControl/OptionButton" to="." method="_on_option_language_button_item_selected"]

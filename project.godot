@@ -16,7 +16,7 @@ config/features=PackedStringArray("4.3", "Forward Plus")
 
 [audio]
 
-buses/default_bus_layout="res://settings/default_bus_layout.tres"
+buses/default_bus_layout="res://settings/sound_bus/default_bus_layout.tres"
 
 [autoload]
 
@@ -27,6 +27,7 @@ GameManager="*res://scripts/singlton/game_manager.gd"
 UiSounds="*res://scripts/other/ui_sounds.tscn"
 SceneSwitcher="*res://scenes/singleton/scene_switcher.tscn"
 ConfigFileHandler="*res://scripts/singlton/config_file_handler.gd"
+MusicController="*res://scenes/singleton/music_controller.tscn"
 
 [display]
 

@@ -4,7 +4,7 @@ signal connected_to_server_signal
 
 const PORT = 9999
 #192.168.0.104
-const IP_ADRESS = "127.0.0.1"
+const IP_ADRESS = "192.168.0.104"
 const MAX_PLAYERS = 1000
 
 @export var player_instance := load("res://scenes/objects/player.tscn")

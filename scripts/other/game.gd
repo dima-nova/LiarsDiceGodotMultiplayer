@@ -15,6 +15,7 @@ extends Node2D
 
 @export var check_bet_animation_player: AnimationPlayer
 @export var menu_animation_player: AnimationPlayer
+@export var finish_game_animation_player: AnimationPlayer
 
 @export var raise_menu_button: Button
 @export var action_buttons: HBoxContainer
@@ -36,15 +37,20 @@ var true_bet_anim_name = "true_bet"
 var false_bet_anim_name = "false_bet"
 var check_true_bet_finish_anim_name = "check_true_bet_finish"
 var check_false_bet_finish_anim_name = "check_false_bet_finish"
+var game_finish_anim_name = "win_anim"
 		
 
 
 func _ready() -> void:
+	# Starting game music
+	MusicController.start_game_music()
+	
 	# Connecting signals
 	GameManager.bet_update.connect(update_bet)
 	GameManager.round_starting.connect(update_start_ui)
 	GameManager.next_turn.connect(make_turn_possibility)
 	GameManager.round_finishing.connect(finish_round)
+	GameManager.game_finishing.connect(finish_game)
 	# Spawn player cards
 	spawn_point.progress_ratio = 0.0
 	spawn_step = 1.0 / PlayersSpawner.get_child_count()
@@ -109,15 +115,47 @@ func clean_dice_list():
 		
 
 func make_turn_possibility():
-	if PlayersSpawner.get_child(GameManager.current_player_id).player_id == multiplayer.get_unique_id():
+	if PlayersSpawner.get_child(GameManager.current_player_id).player_id == multiplayer.get_unique_id() and PlayersSpawner.get_child(GameManager.current_player_id).is_move:
 		waiting_label.hide()
 		action_buttons.visible = true
+		print_debug("nooo!")
 	else:
 		if raise_input_menu.visible:
 			menu_animation_player.play_backwards("raise_menu_open")
 			_on_raise_menu_button_pressed()
 		action_buttons.hide()
 		waiting_label.visible = true
+		
+		
+func finish_game():
+	await get_tree().process_frame
+	#Update players cards
+	if PlayersSpawner.get_child_count() < players_list.get_child_count():
+		for player in players_list.get_children():
+			player.free()
+		players = {}
+		spawn_point.progress_ratio = 0.0
+		spawn_step = 1.0 / PlayersSpawner.get_child_count()
+		player_cards_generation()
+	
+	# Update dices UI
+	clean_dice_list()
+	
+	# Player card win anim
+	var player_card = players_list.get_child(0)
+	player_card.win_anim()
+	
+	# Label anim
+	finish_game_animation_player.play(game_finish_anim_name)
+	
+	print("Game was finished!")
+		
+func _on_finish_game_animation_player_animation_finished(anim_name: StringName) -> void:
+	if anim_name == game_finish_anim_name:
+		if multiplayer.has_multiplayer_peer():
+			multiplayer.multiplayer_peer.close()
+			multiplayer.multiplayer_peer = null
+		SceneSwitcher.change_scene_to_file("res://scenes/menues/main_menu.tscn")
 		
 
 func finish_round():
@@ -226,6 +264,9 @@ func _on_chech_button_pressed() -> void:
 	if raise_input_menu.visible:
 		menu_animation_player.play_backwards("raise_menu_open")
 		_on_raise_menu_button_pressed()
+	action_buttons.hide()
+	waiting_label.visible = true
+		
 	
 	GameManager.check_last_bet.rpc_id(1, multiplayer.get_unique_id())
 	print("You are cheching last bet")

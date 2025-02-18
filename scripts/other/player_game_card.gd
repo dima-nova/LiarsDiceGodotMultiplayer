@@ -7,6 +7,7 @@ extends Node2D
 @export var dices_number_label: Label
 
 var lose_dice_anim_name = "lose_dice"
+var win_anim_name = "win"
 
 var player_name: String:
 	set(new_name):
@@ -17,7 +18,7 @@ var is_move: bool = false:
 	set(value):
 		if value:
 			animation_player.play("move")
-		elif animation_player.current_animation != lose_dice_anim_name:
+		elif animation_player.current_animation not in [lose_dice_anim_name, win_anim_name]:
 			animation_player.play("RESET")
 			
 var dices_number: int = 5
@@ -30,10 +31,14 @@ func _ready() -> void:
 
 func lose_dice_anim():
 	if animation_player.current_animation != lose_dice_anim_name:
-		animation_player.play("lose_dice")
+		animation_player.play(lose_dice_anim_name)
 		
 func reduce_label_dice_number():
 	dices_number_label.text = str(dices_number)
+	
+func win_anim():
+	print("win anim")
+	animation_player.play(win_anim_name)
 
 func player_info_update():
 	is_move = player.is_move

@@ -46,3 +46,11 @@ func _on_option_language_button_item_selected(index: int) -> void:
 	TranslationServer.set_locale(locale)	
 	
 	ConfigFileHandler.save_interface_setting("language", ConfigFileHandler.LANGUAGES[index])
+
+
+func _on_music_volume_slider_value_changed(value: float) -> void:
+	AudioServer.set_bus_volume_db(1, linear_to_db(value / 100))
+
+
+func _on_sfx_volume_slider_value_changed(value: float) -> void:
+	AudioServer.set_bus_volume_db(2, linear_to_db(value / 100))

@@ -4,6 +4,7 @@ signal bet_update
 signal round_starting
 signal next_turn
 signal round_finishing
+signal game_finishing
 
 @export var is_game_started: bool = false
 
@@ -47,6 +48,14 @@ func start_round():
 	if multiplayer.is_server():
 		check_dropped_out_players()
 		
+		if PlayersSpawner.get_child_count() == 1:
+			print(PlayersSpawner.get_child(0).player_name)
+			PlayersSpawner.get_child(0).is_move = false
+			# Updating ui
+			await get_tree().process_frame
+			finish_game_ui.rpc()
+			return
+		
 		current_player_id = next_player_id
 		PlayersSpawner.get_child(current_player_id).is_move = true
 
@@ -69,7 +78,7 @@ func check_dropped_out_players():
 			if player.dices_number <= 0:
 				if player.get_index() == current_player_id:
 					player.free()
-					take_next_player()
+					next_player_id = take_next_player()
 				else:
 					player.free()
 					print("Player deleted from game")
@@ -92,6 +101,10 @@ func update_dices_ui():
 func finish_round_ui(real_number_of_dice_: int):
 	self.real_number_of_dice = real_number_of_dice_
 	round_finishing.emit()
+	
+@rpc("any_peer", "call_remote")
+func finish_game_ui():
+	game_finishing.emit()
 
 
 @rpc("any_peer", "call_remote")
@@ -104,7 +117,7 @@ func raise_bet(player_id, face_value, dice_number):
 					current_bet_number = dice_number
 					
 					PlayersSpawner.get_child(current_player_id).is_move = false
-					take_next_player()
+					current_player_id = take_next_player()
 					PlayersSpawner.get_child(current_player_id).is_move = true
 			
 					await get_tree().process_frame
@@ -149,9 +162,9 @@ func get_number_of_dices_by_face(face_value: int):
 func take_next_player():
 	
 	if current_player_id + 1 >= PlayersSpawner.get_child_count():
-		current_player_id = 0
+		return 0
 	else:
-		current_player_id += 1
+		return current_player_id + 1
 
 
 func get_previous_player_id() -> int:

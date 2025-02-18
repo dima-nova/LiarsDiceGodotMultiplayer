@@ -12,7 +12,7 @@ const SETTINGS_FILE_PATH = "user://settings.ini"
 func _ready() -> void:
 	if !FileAccess.file_exists(SETTINGS_FILE_PATH):
 		config.set_value("audio", "music_volume", 0.5)
-		config.set_value("audio", "sfx_volume", 0.5)
+		config.set_value("audio", "sfx_volume", 1.0)
 		
 		config.set_value("interface", "language", "english")
 		
@@ -27,6 +27,11 @@ func _ready() -> void:
 	# Interface
 	var locale = LANGUAGES_DICT[load_interface_settings().language]
 	TranslationServer.set_locale(locale)	
+	
+	# Audio
+	var audio_settings = load_audio_settings()
+	AudioServer.set_bus_volume_db(1, linear_to_db(audio_settings.music_volume))
+	AudioServer.set_bus_volume_db(2, linear_to_db(audio_settings.sfx_volume))
 	
 	
 		

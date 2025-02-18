@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://bydo21oj4y82x"]
+[gd_scene load_steps=39 format=3 uid="uid://bydo21oj4y82x"]
 
 [ext_resource type="PackedScene" uid="uid://m1y2a7jnwaur" path="res://scenes/objects/player_game_card.tscn" id="1_1qpfq"]
 [ext_resource type="Script" path="res://scripts/other/game.gd" id="1_ccd8n"]
@@ -523,7 +523,128 @@ _data = {
 "raise_menu_open": SubResource("Animation_oryty")
 }
 
-[node name="Game" type="Node2D" node_paths=PackedStringArray("spawn_point", "players_list", "main_bet_dice", "main_bet_value_label", "check_bet_dice", "check_bet_value_label", "check_bet_animation_player", "menu_animation_player", "raise_menu_button", "action_buttons", "waiting_label", "dice_number_slider", "dice_number_slider_label", "dice_face_value_order", "raise_input_menu", "dice_layer_1", "dice_layer_2")]
+[sub_resource type="Animation" id="Animation_isca7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MainUI/ActionLabelNode:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MainUI/Bet:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BG/BG/Panel:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_jatf1"]
+resource_name = "win_anim"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MainUI/ActionLabelNode:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.3, 0.633333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MainUI/ActionLabelNode:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.308333, 0.708333, 0.908333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(203, 193), Vector2(203, 170), Vector2(203, 193)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MainUI/ActionLabelNode:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MainUI/ActionLabelNode/ActionLabel:text")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["WINNER_LABEL"]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("MainUI/Bet:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.366667, 1.06667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("BG/BG/Panel:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.366667, 1.06667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sm2ci"]
+_data = {
+"RESET": SubResource("Animation_isca7"),
+"win_anim": SubResource("Animation_jatf1")
+}
+
+[node name="Game" type="Node2D" node_paths=PackedStringArray("spawn_point", "players_list", "main_bet_dice", "main_bet_value_label", "check_bet_dice", "check_bet_value_label", "check_bet_animation_player", "menu_animation_player", "finish_game_animation_player", "raise_menu_button", "action_buttons", "waiting_label", "dice_number_slider", "dice_number_slider_label", "dice_face_value_order", "raise_input_menu", "dice_layer_1", "dice_layer_2")]
 script = ExtResource("1_ccd8n")
 player_game_card = ExtResource("1_1qpfq")
 dice_card = ExtResource("7_fae05")
@@ -535,6 +656,7 @@ check_bet_dice = NodePath("MainUI/CheckBet/CheckBetDice")
 check_bet_value_label = NodePath("MainUI/CheckBet/CheckBetDiceNumber")
 check_bet_animation_player = NodePath("CheckBetAnimationPlayer")
 menu_animation_player = NodePath("MenuAnimationPlayer")
+finish_game_animation_player = NodePath("FinishGameAnimationPlayer")
 raise_menu_button = NodePath("MainUI/ActionMenu/MarginContainer/ActionButtons/RaiseMenuButton")
 action_buttons = NodePath("MainUI/ActionMenu/MarginContainer/ActionButtons")
 waiting_label = NodePath("MainUI/ActionMenu/MarginContainer/WaitingLabel")
@@ -878,7 +1000,6 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_7250g")
 
 [node name="ActionLabelNode" type="Node2D" parent="MainUI"]
 position = Vector2(203, 193)
-scale = Vector2(1e-05, 1e-05)
 
 [node name="ActionLabel" type="Label" parent="MainUI/ActionLabelNode"]
 anchors_preset = 8
@@ -911,6 +1032,11 @@ libraries = {
 "": SubResource("AnimationLibrary_vl3t1")
 }
 
+[node name="FinishGameAnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_sm2ci")
+}
+
 [connection signal="pressed" from="MainUI/ActionMenu/MarginContainer/ActionButtons/RaiseMenuButton" to="." method="_on_raise_menu_button_pressed"]
 [connection signal="pressed" from="MainUI/ActionMenu/MarginContainer/ActionButtons/ChechButton" to="." method="_on_chech_button_pressed"]
 [connection signal="value_changed" from="MainUI/RaiseInput/DiceNumberSlider" to="." method="_on_dice_number_slider_value_changed"]
@@ -922,3 +1048,4 @@ libraries = {
 [connection signal="pressed" from="MainUI/RaiseInput/DiceToRaiseOrderButtons/Dices/DiceButton6" to="MainUI/RaiseInput/DiceToRaiseOrderButtons" method="_on_dice_button_6_pressed"]
 [connection signal="pressed" from="MainUI/RaiseInput/RaiseButton" to="." method="_on_raise_button_pressed"]
 [connection signal="animation_finished" from="CheckBetAnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="animation_finished" from="FinishGameAnimationPlayer" to="." method="_on_finish_game_animation_player_animation_finished"]

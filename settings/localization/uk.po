@@ -81,6 +81,10 @@ msgid "   CHECK_LABEL"
 msgstr "   Чек"
 
 #: scenes/game/game.tscn
+msgid "WINNER_LABEL"
+msgstr "Переможець"
+
+#: scenes/game/game.tscn
 msgid "WAIT_LABEL"
 msgstr "Чекайте на ваш хід..."
 

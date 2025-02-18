@@ -77,6 +77,10 @@ msgid "CHECK_LABEL"
 msgstr "Check"
 
 #: scenes/game/game.tscn
+msgid "WINNER_LABEL"
+msgstr "Winner"
+
+#: scenes/game/game.tscn
 msgid "   CHECK_LABEL"
 msgstr "   Check"
 
